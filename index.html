@@ -68,10 +68,11 @@
  .stagger-5{transition-delay:.4s;}
  .stagger-6{transition-delay:.48s;}
 
- /* ---------- subtle rising dots background ---------- */
- .tech-bg{position:fixed;inset:0;pointer-events:none;z-index:-1;opacity:.4;background-image:radial-gradient(circle,var(--indigo) 1.3px,transparent 1.6px);background-size:64px 64px;animation:dots-rise 22s linear infinite;-webkit-mask-image:linear-gradient(to bottom,transparent,#000 15%,#000 85%,transparent);mask-image:linear-gradient(to bottom,transparent,#000 15%,#000 85%,transparent);}
- @keyframes dots-rise{from{background-position:0 0;}to{background-position:0 -64px;}}
- @media (prefers-reduced-motion: reduce){ .tech-bg{animation:none;} }
+ /* ---------- loose rising bubbles background ---------- */
+ .tech-bg{position:fixed;inset:0;pointer-events:none;z-index:-1;overflow:hidden;}
+ .tech-bg .bubble{position:absolute;bottom:-5vh;border-radius:50%;opacity:0;animation:bubble-rise linear infinite;}
+ @keyframes bubble-rise{0%{transform:translateY(0) translateX(0);opacity:0;}10%{opacity:var(--bubble-opacity,.3);}90%{opacity:var(--bubble-opacity,.3);}100%{transform:translateY(-110vh) translateX(var(--drift,0px));opacity:0;}}
+ @media (prefers-reduced-motion: reduce){ .tech-bg .bubble{display:none;} }
   
  .icon{width:1em;height:1em;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none;vertical-align:-.15em;}  
  .idx-badge{font-family:'JetBrains Mono',monospace;font-size:.72rem;font-weight:600;color:var(--purple);background:var(--surface-2);border:1px solid var(--border);border-radius:999px;width:1.9em;height:1.9em;display:inline-flex;align-items:center;justify-content:center;}  
@@ -872,6 +873,27 @@
  });
 
  render('inicio');
+
+ // ---- loose rising bubbles ----
+ (function initBubbles(){
+ var container=document.querySelector('.tech-bg');
+ if(!container) return;
+ var colors=['var(--indigo)','var(--teal)','var(--lavender)','var(--purple)'];
+ var count=18;
+ for(var i=0;i<count;i++){
+ var b=document.createElement('span');
+ b.className='bubble';
+ var size=(2+Math.random()*4).toFixed(1);
+ var left=(Math.random()*100).toFixed(1);
+ var duration=(14+Math.random()*18).toFixed(1);
+ var delay=(-Math.random()*duration).toFixed(1);
+ var drift=Math.round(Math.random()*50-25);
+ var opacity=(0.15+Math.random()*0.25).toFixed(2);
+ var color=colors[Math.floor(Math.random()*colors.length)];
+ b.style.cssText='width:'+size+'px;height:'+size+'px;left:'+left+'%;background:'+color+';animation-duration:'+duration+'s;animation-delay:'+delay+'s;--drift:'+drift+'px;--bubble-opacity:'+opacity+';';
+ container.appendChild(b);
+ }
+ })();
 })();
 </script>  
 </body>  
