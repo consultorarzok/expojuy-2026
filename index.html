@@ -127,7 +127,7 @@
  /* ---------- site (inside mockup) ---------- */  
  .site-header{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.9rem 1.4rem;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:40;background:var(--paper);box-shadow:0 1px 0 var(--border);}  
  .brand{display:flex;align-items:center;gap:.6rem;font-family:'Unbounded',sans-serif;font-weight:700;font-size:1rem;}  
- .mark{width:22px;height:auto;flex:none;display:block;}
+ .brand-logo{height:48px;width:auto;flex:none;display:block;background:#fff;border-radius:10px;padding:.35rem .6rem;box-sizing:content-box;}
  .site-nav{display:flex;align-items:center;gap:1.4rem;}  
  .site-nav ul{list-style:none;display:flex;gap:1.3rem;margin:0;padding:0;}  
  .site-nav a{font-size:.85rem;font-weight:600;color:var(--muted);text-decoration:none;padding:.3rem 0;border-bottom:2px solid transparent;}  
@@ -418,7 +418,7 @@
  }).join('');  
  return ''+  
  '<header class="site-header">'+  
- '<a href="#" class="brand" data-nav="inicio"><img class="mark" src="images/expojuy-icon.png" alt="">ExpoJuy 2026</a>'+
+ '<a href="#" class="brand" data-nav="inicio"><img class="brand-logo" src="images/expojuy-brand.png" alt="ExpoJuy 2026"></a>'+
  '<div class="site-nav">'+
  '<ul id="site-nav-list">'+links+'</ul>'+
  '<button type="button" class="theme-toggle" id="theme-toggle" role="switch" aria-checked="false" title="Modo claro / oscuro" aria-label="Cambiar entre modo claro y modo oscuro"><span class="track"></span><span class="knob"></span></button>'+
@@ -432,7 +432,7 @@
  '<footer class="site-footer">'+  
  '<div class="foot-grid">'+  
  '<div>'+  
- '<div class="brand" style="margin-bottom:.8rem;"><img class="mark" src="images/expojuy-icon.png" alt="">ExpoJuy 2026</div>'+  
+ '<div class="brand" style="margin-bottom:.8rem;"><img class="brand-logo" src="images/expojuy-brand.png" alt="ExpoJuy 2026"></div>'+  
  '<p class="muted" style="font-size:.85rem;max-width:32ch;">Conectando países, creando oportunidades. La plataforma de negocios e innovación del Norte Argentino.</p>'+  
  '<p class="muted" style="font-size:.74rem;margin-top:.9rem;">Organizan: Ministerio de Desarrollo Económico y Producción de Jujuy — Dirección Provincial de Servicios Basados en el Conocimiento · Cámara de Comercio Exterior de Jujuy.<br>Acompaña: ClusteAr — Cámara de Empresas TICs.</p>'+  
  '</div>'+  
