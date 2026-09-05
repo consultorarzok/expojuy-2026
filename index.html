@@ -68,9 +68,9 @@
  .stagger-5{transition-delay:.4s;}
  .stagger-6{transition-delay:.48s;}
 
- /* ---------- subtle rising tech grid background ---------- */
- .tech-bg{position:fixed;inset:0;pointer-events:none;z-index:-1;opacity:.55;background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);background-size:44px 44px;animation:tech-rise 40s linear infinite;-webkit-mask-image:linear-gradient(to bottom,transparent,#000 18%,#000 82%,transparent);mask-image:linear-gradient(to bottom,transparent,#000 18%,#000 82%,transparent);}
- @keyframes tech-rise{from{background-position:0 0,0 0;}to{background-position:0 -440px,0 0;}}
+ /* ---------- subtle rising dots background ---------- */
+ .tech-bg{position:fixed;inset:0;pointer-events:none;z-index:-1;opacity:.4;background-image:radial-gradient(circle,var(--indigo) 1.3px,transparent 1.6px);background-size:64px 64px;animation:dots-rise 22s linear infinite;-webkit-mask-image:linear-gradient(to bottom,transparent,#000 15%,#000 85%,transparent);mask-image:linear-gradient(to bottom,transparent,#000 15%,#000 85%,transparent);}
+ @keyframes dots-rise{from{background-position:0 0;}to{background-position:0 -64px;}}
  @media (prefers-reduced-motion: reduce){ .tech-bg{animation:none;} }
   
  .icon{width:1em;height:1em;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none;vertical-align:-.15em;}  
