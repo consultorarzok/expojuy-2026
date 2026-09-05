@@ -91,17 +91,7 @@
  .grid{display:grid;gap:1rem;}  
  .muted{color:var(--muted);}  
   
- /* ---------- shell ---------- */  
- .ribbon{background:var(--surface-2);border-bottom:1px solid var(--border);padding:.55rem 1rem;text-align:center;font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--muted);}  
- .app{max-width:1320px;margin:0 auto;padding:1.4rem 1.2rem 4rem;}  
- .app-head{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:1rem;margin-bottom:1.4rem;}  
- .app-title h1{font-size:clamp(1.3rem,2.4vw,1.7rem);}  
- .app-title p{color:var(--muted);margin-top:.3rem;font-size:.92rem;max-width:46ch;}  
- .modebar{display:inline-flex;background:var(--surface-2);border:1px solid var(--border);border-radius:999px;padding:.3rem;gap:.25rem;}  
- .modebar button{background:transparent;border:none;padding:.55rem 1.1rem;border-radius:999px;font-weight:600;font-size:.86rem;color:var(--muted);}  
- .modebar button[aria-pressed="true"]{background:var(--purple);color:#fff;}  
-  
- [hidden]{display:none!important;}  
+ [hidden]{display:none!important;}
   
  /* ---------- IA view ---------- */  
  .ia-panel{display:grid;gap:2.2rem;}  
@@ -128,31 +118,6 @@
  table.coverage td:first-child{font-weight:600;}  
  .coverage-wrap{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:1.3rem 1.4rem;overflow-x:auto;}  
   
- /* ---------- prototype chrome ---------- */  
- .browser{border:1px solid var(--border);border-radius:18px 18px 0 0;background:var(--surface);box-shadow:var(--shadow);overflow:hidden;}  
- .browser-top{display:flex;align-items:center;gap:.9rem;padding:.7rem 1rem;border-bottom:1px solid var(--border);}  
- .dots{display:flex;gap:.4rem;flex:none;}  
- .dots span{width:10px;height:10px;border-radius:50%;background:var(--border);}  
- .addr{flex:1;display:flex;align-items:center;gap:.5rem;background:var(--surface-2);border:1px solid var(--border);border-radius:999px;padding:.4rem .9rem;font-family:'JetBrains Mono',monospace;font-size:.76rem;color:var(--muted);overflow:hidden;}  
- .addr b{color:var(--ink);font-weight:600;}  
- .addr .path{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}  
- .dsize{display:flex;gap:.3rem;flex:none;background:var(--surface-2);border:1px solid var(--border);border-radius:999px;padding:.25rem;}  
- .dsize button{background:transparent;border:none;border-radius:999px;padding:.35rem .6rem;font-size:.75rem;color:var(--muted);font-weight:600;}  
- .dsize button[aria-pressed="true"]{background:var(--indigo);color:#fff;}  
-  
- .proto-tabs{display:flex;flex-wrap:wrap;align-items:center;gap:.4rem;padding:.65rem .9rem;border-bottom:1px solid var(--border);background:var(--surface-2);overflow-x:auto;}  
- .proto-tabs .grp{display:flex;gap:.35rem;flex-wrap:wrap;}  
- .proto-tabs .divider{width:1px;align-self:stretch;background:var(--border);margin:0 .3rem;flex:none;}  
- .ptab{background:transparent;border:1px solid transparent;padding:.4rem .8rem;border-radius:999px;font-size:.78rem;font-weight:600;color:var(--muted);white-space:nowrap;}  
- .ptab[aria-selected="true"]{background:var(--surface);border-color:var(--border);color:var(--purple);}  
-  
- .device-frame{background:var(--surface-2);border-radius:0 0 18px 18px;padding:clamp(.6rem,2.5vw,1.6rem);display:flex;justify-content:center;}  
- .device{width:100%;container-type:inline-size;container-name:device;background:var(--paper);border-radius:12px;overflow:hidden;transition:max-width .25s ease;box-shadow:0 0 0 1px var(--border);}  
- .device.dw-desktop{max-width:1180px;}  
- .device.dw-tablet{max-width:760px;}  
- .device.dw-mobile{max-width:390px;}  
- .device-size-label{text-align:center;padding:.4rem;font-family:'JetBrains Mono',monospace;font-size:.68rem;color:var(--muted);border-bottom:1px dashed var(--border);}  
-  
  /* ---------- site (inside mockup) ---------- */  
  .site-header{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.9rem 1.4rem;border-bottom:1px solid var(--border);position:relative;background:var(--paper);}  
  .brand{display:flex;align-items:center;gap:.6rem;font-family:'Unbounded',sans-serif;font-weight:700;font-size:1rem;}  
@@ -167,7 +132,7 @@
  .site-nav a{font-size:.85rem;font-weight:600;color:var(--muted);text-decoration:none;padding:.3rem 0;border-bottom:2px solid transparent;}  
  .site-nav a[data-active="true"]{color:var(--purple);border-color:var(--purple);}  
  .nav-toggle{display:none;background:var(--surface-2);border:1px solid var(--border);border-radius:8px;padding:.4rem .6rem;font-size:.8rem;font-weight:600;}  
- @container device (max-width: 720px){  
+ @media (max-width: 720px){  
  .site-nav ul{display:none;}  
  .site-nav ul.open{display:flex;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:var(--surface);border-bottom:1px solid var(--border);padding:.8rem 1.4rem;gap:.7rem;z-index:5;}  
  .nav-toggle{display:inline-flex;}  
@@ -186,15 +151,15 @@
  .hero-footnote{font-size:.72rem;color:rgba(255,255,255,.65);margin-top:.2rem;}  
   
  .stat-grid{grid-template-columns:repeat(4,1fr);}  
- @container device (max-width: 620px){ .stat-grid{grid-template-columns:repeat(2,1fr);} }  
+ @media (max-width: 620px){ .stat-grid{grid-template-columns:repeat(2,1fr);} }  
  .stat b{display:block;font-family:'JetBrains Mono',monospace;font-size:1.5rem;color:var(--purple);}  
  .stat span{font-size:.78rem;color:var(--muted);}  
   
  .cards-3{grid-template-columns:repeat(3,1fr);}  
  .cards-2{grid-template-columns:repeat(2,1fr);}  
  .cards-6{grid-template-columns:repeat(3,1fr);}  
- @container device (max-width: 760px){ .cards-3{grid-template-columns:repeat(2,1fr);} .cards-6{grid-template-columns:repeat(2,1fr);} }  
- @container device (max-width: 460px){ .cards-3,.cards-2,.cards-6,.stat-grid{grid-template-columns:1fr;} }  
+ @media (max-width: 760px){ .cards-3{grid-template-columns:repeat(2,1fr);} .cards-6{grid-template-columns:repeat(2,1fr);} }  
+ @media (max-width: 460px){ .cards-3,.cards-2,.cards-6,.stat-grid{grid-template-columns:1fr;} }  
   
  .section-head{display:flex;align-items:flex-end;justify-content:space-between;gap:1rem;margin-bottom:1.4rem;flex-wrap:wrap;}  
  .section-head h2{font-size:clamp(1.25rem,2.6vw,1.7rem);}  
@@ -218,8 +183,8 @@
   
  .site-footer{background:var(--surface-2);border-top:1px solid var(--border);padding:2.4rem clamp(1.2rem,5vw,3rem) 1.4rem;}  
  .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:1.8rem;}  
- @container device (max-width: 700px){ .foot-grid{grid-template-columns:1fr 1fr;} }  
- @container device (max-width: 420px){ .foot-grid{grid-template-columns:1fr;} }  
+ @media (max-width: 700px){ .foot-grid{grid-template-columns:1fr 1fr;} }  
+ @media (max-width: 420px){ .foot-grid{grid-template-columns:1fr;} }  
  .foot-grid h5{font-family:'JetBrains Mono',monospace;text-transform:uppercase;font-size:.68rem;letter-spacing:.07em;color:var(--muted);margin-bottom:.7rem;font-weight:600;}  
  .foot-grid ul{list-style:none;margin:0;padding:0;display:grid;gap:.5rem;font-size:.83rem;}  
  .foot-grid ul a{text-decoration:none;color:var(--ink);}  
@@ -239,7 +204,7 @@
  .timeline{display:grid;gap:.9rem;}  
  .tl-item{display:grid;grid-template-columns:88px 1fr;gap:1rem;padding:1rem 1.1rem;background:var(--surface);border:1px solid var(--border);border-radius:14px;align-items:start;}  
  .tl-item time{font-family:'JetBrains Mono',monospace;font-size:.82rem;color:var(--purple);font-weight:600;}  
- @container device (max-width: 480px){ .tl-item{grid-template-columns:1fr;} }  
+ @media (max-width: 480px){ .tl-item{grid-template-columns:1fr;} }  
   
  .day-tabs{display:flex;gap:.5rem;flex-wrap:wrap;}  
  .day-tabs button{background:var(--surface);border:1px solid var(--border);border-radius:999px;padding:.5rem 1rem;font-size:.8rem;font-weight:600;color:var(--muted);}  
@@ -250,12 +215,12 @@
  .sponsor-slot{aspect-ratio:2.4/1;border:1.5px dashed var(--border);border-radius:12px;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:.78rem;background:var(--surface);}  
  .tier-1 .sponsor-slot{aspect-ratio:3.4/1;font-size:.9rem;}  
  .tier-grid{grid-template-columns:repeat(3,1fr);}  
- @container device (max-width: 620px){ .tier-grid{grid-template-columns:repeat(2,1fr);} }  
+ @media (max-width: 620px){ .tier-grid{grid-template-columns:repeat(2,1fr);} }  
   
  .contact-grid{grid-template-columns:1.1fr .9fr;}
- @container device (max-width: 700px){ .contact-grid{grid-template-columns:1fr;} }
+ @media (max-width: 700px){ .contact-grid{grid-template-columns:1fr;} }
  .sobre-intro-grid{grid-template-columns:1.1fr .9fr;gap:2rem;align-items:center;}
- @container device (max-width: 700px){ .sobre-intro-grid{grid-template-columns:1fr;} }
+ @media (max-width: 700px){ .sobre-intro-grid{grid-template-columns:1fr;} }
  .field{display:grid;gap:.35rem;margin-bottom:.9rem;}  
  .field label{font-size:.78rem;font-weight:600;color:var(--muted);}  
  .field input,.field select,.field textarea{font-family:inherit;font-size:.88rem;padding:.65rem .8rem;border-radius:10px;border:1px solid var(--border);background:var(--surface);color:var(--ink);}  
@@ -273,7 +238,7 @@
  .accordion-item .a-body{padding:0 1.2rem 1.1rem;color:var(--muted);font-size:.87rem;}  
   
  .feed-grid{grid-template-columns:repeat(4,1fr);}  
- @container device (max-width: 620px){ .feed-grid{grid-template-columns:repeat(2,1fr);} }  
+ @media (max-width: 620px){ .feed-grid{grid-template-columns:repeat(2,1fr);} }  
  .feed-tile{aspect-ratio:1;border-radius:12px;background:var(--surface-2);display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:.85rem;font-weight:600;background-image:linear-gradient(150deg,var(--lavender),var(--indigo));color:#fff;}  
  .follow-row{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1.2rem;}  
  .follow-row .btn-ghost{font-size:.8rem;padding:.55em 1.05em;}  
@@ -288,28 +253,20 @@
 <body>  
   
   
-<div class="ribbon">Propuesta conceptual — Desafío Digital ExpoJuy 2026 · No es el sitio oficial de ExpoJuy ni de la Cámara de Comercio Exterior de Jujuy</div>  
-  
-<div class="app">  
- <div class="app-head">  
- <div class="app-title">  
- <h1>Arquitectura de información &amp; mockup navegable</h1>  
- <p>Propuesta para el sitio oficial de ExpoJuy 2026 — primera etapa del desafío. Identidad visual basada en el kit de diseño provisto por la organización.</p>  
- </div>  
- <div style="display:flex;align-items:center;gap:.9rem;">  
- <div class="modebar" role="tablist" aria-label="Vista">  
- <button type="button" data-mode="proto" role="tab" aria-pressed="true">Prototipo navegable</button>  
- <button type="button" data-mode="ia" role="tab" aria-pressed="false">Arquitectura de información</button>  
- </div>  
- <button type="button" class="theme-toggle" id="theme-toggle" role="switch" aria-checked="false" title="Modo claro / oscuro" aria-label="Cambiar entre modo claro y modo oscuro">
- <span class="track"></span>
- <span class="knob"></span>
- </button>
- </div>  
- </div>  
-  
- <!-- ============ IA VIEW ============ -->  
- <section id="view-ia" class="view" hidden>  
+<div id="screen-root"></div>
+
+<!-- ============ DOCUMENTACIÓN: ARQUITECTURA DE INFORMACIÓN ============ -->
+<!-- Página de referencia para el jurado, enlazada desde el footer (no forma parte del sitio real) -->
+<section id="view-ia" class="view" hidden>
+ <div class="section-pad">
+ <div class="section-head">
+ <div>
+ <span class="eyebrow">Documentación del proyecto</span>
+ <h2 style="margin-top:.4rem;">Arquitectura de información</h2>
+ <p class="muted" style="max-width:60ch;margin-top:.4rem;font-size:.9rem;">Diagrama y criterios de organización del sitio — material de referencia para el jurado, no forma parte de la navegación real.</p>
+ </div>
+ <button type="button" class="btn btn-ghost" id="ia-back">← Volver al sitio</button>
+ </div>
  <div class="ia-panel">  
  <div class="diagram-wrap">  
  <svg viewBox="0 0 1240 440" role="img" aria-label="Diagrama de arquitectura del sitio">  
@@ -392,35 +349,13 @@
  <tr><td>Preguntas frecuentes</td><td>Footer global</td></tr>  
  <tr><td>Redes sociales</td><td>Footer global + feed embebido en Inicio</td></tr>  
  </tbody>  
- </table>  
- </div>  
- </div>  
- </section>  
-  
- <!-- ============ PROTOTYPE VIEW ============ -->  
- <section id="view-proto" class="view">  
- <div class="browser">  
- <div class="browser-top">  
- <div class="dots"><span></span><span></span><span></span></div>  
- <div class="addr"><b>expojuy2026.com.ar</b><span class="path" id="addr-path">/</span></div>  
- <div class="dsize" role="group" aria-label="Tamaño de vista">  
- <button type="button" data-size="desktop" aria-pressed="true">Escritorio</button>  
- <button type="button" data-size="tablet" aria-pressed="false">Tablet</button>  
- <button type="button" data-size="mobile" aria-pressed="false">Celular</button>  
- </div>  
- </div>  
- <nav class="proto-tabs" id="proto-tabs" aria-label="Páginas del sitio"></nav>  
- </div>  
- <div class="device-frame">  
- <div class="device dw-desktop" id="device">  
- <div class="device-size-label" id="device-size-label">1180px · vista escritorio</div>  
- <div id="screen-root"></div>  
- </div>  
- </div>  
- </section>  
-</div>  
-  
-<footer class="credit">Archivo autocontenido — no requiere conexión a claude.ai, solo internet para cargar las tipografías de Google Fonts (si no hay conexión, se usa la fuente del sistema como respaldo). Kit de diseño: tipografías Ambit (oficiales) para referencia; en este prototipo se usan Unbounded, Manrope y JetBrains Mono por disponibilidad vía Google Fonts. Colores tomados del isologotipo oficial de ExpoJuy 2026.</footer>  
+ </table>
+ </div>
+ </div>
+ </div>
+</section>
+
+<footer class="credit">Tipografías Ambit (oficiales) para referencia; en este prototipo se usan Unbounded, Manrope y JetBrains Mono por disponibilidad vía Google Fonts. Colores tomados del isologotipo oficial de ExpoJuy 2026. · <a href="#" data-nav="arquitectura">Ver arquitectura de información (documentación para el jurado)</a></footer>  
   
 <script>  
 (function(){  
@@ -462,11 +397,12 @@
  return ''+  
  '<header class="site-header">'+  
  '<a href="#" class="brand" data-nav="inicio"><span class="mark"><span></span><span></span><span></span><span></span></span>ExpoJuy 2026</a>'+  
- '<div class="site-nav">'+  
- '<ul id="site-nav-list">'+links+'</ul>'+  
- '<a href="#" class="btn btn-primary cta-header" data-nav="contacto">Quiero exhibir</a>'+  
- '<button type="button" class="nav-toggle" id="nav-toggle">Menú ≡</button>'+  
- '</div>'+  
+ '<div class="site-nav">'+
+ '<ul id="site-nav-list">'+links+'</ul>'+
+ '<a href="#" class="btn btn-primary cta-header" data-nav="contacto">Quiero exhibir</a>'+
+ '<button type="button" class="theme-toggle" id="theme-toggle" role="switch" aria-checked="false" title="Modo claro / oscuro" aria-label="Cambiar entre modo claro y modo oscuro"><span class="track"></span><span class="knob"></span></button>'+
+ '<button type="button" class="nav-toggle" id="nav-toggle">Menú ≡</button>'+
+ '</div>'+
  '</header>';  
  }  
   
@@ -768,11 +704,11 @@
  }  
   
  // ---- theme (light/dark switch) ----
- var themeBtn=document.getElementById('theme-toggle');
  function systemPrefersDark(){ return !!(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches); }
  function applyTheme(t){
  document.documentElement.setAttribute('data-theme', t);
- if(themeBtn) themeBtn.setAttribute('aria-checked', t==='dark' ? 'true' : 'false');
+ var btn=document.getElementById('theme-toggle');
+ if(btn) btn.setAttribute('aria-checked', t==='dark' ? 'true' : 'false');
  try{ localStorage.setItem('expojuy-theme', t); }catch(e){}
  }
  function initTheme(){
@@ -780,14 +716,8 @@
  try{ saved=localStorage.getItem('expojuy-theme'); }catch(e){}
  applyTheme(saved || (systemPrefersDark() ? 'dark' : 'light'));
  }
- if(themeBtn){
- themeBtn.addEventListener('click', function(){
- var next = document.documentElement.getAttribute('data-theme')==='light' ? 'dark' : 'light';
- applyTheme(next);
- });
- }
- initTheme();
-  
+
+
  // ---- scroll reveal ----
  var revealObserver=new IntersectionObserver(function(entries){
  entries.forEach(function(entry){
@@ -815,66 +745,59 @@
  }
 
  // ---- render ----
- var deviceEl=document.getElementById('device');
- var rootEl=document.getElementById('screen-root');  
- var tabsEl=document.getElementById('proto-tabs');  
- var addrEl=document.getElementById('addr-path');  
- var current='inicio';  
-  
- function buildTabs(){  
- var primary=NAV_PRIMARY.map(function(n){return '<button type="button" class="ptab" data-tab="'+n.id+'" role="tab" aria-selected="'+(n.id===current)+'">'+n.label+'</button>';}).join('');  
- var secondary=NAV_SECONDARY.map(function(n){return '<button type="button" class="ptab" data-tab="'+n.id+'" role="tab" aria-selected="'+(n.id===current)+'">'+n.label+'</button>';}).join('');  
- tabsEl.innerHTML='<div class="grp">'+primary+'</div><div class="divider"></div><div class="grp">'+secondary+'</div>';  
- }  
-  
- function render(id){  
- current=id;  
- var found=ALL.filter(function(n){return n.id===id;})[0]||ALL[0];  
+ var rootEl=document.getElementById('screen-root');
+ var iaView=document.getElementById('view-ia');
+ var current='inicio';
+
+ function render(id){
+ current=id;
  rootEl.innerHTML=siteHeader(id)+SCREENS[id]()+siteFooter();
  autoReveal(rootEl);
- addrEl.textContent=found.path;
- buildTabs();
- rootEl.scrollTop=0;  
- var frame=document.querySelector('.device-frame');  
- if(frame) frame.scrollIntoView({behavior:'smooth',block:'nearest'});  
- }  
-  
- document.addEventListener('click',function(e){  
- var navBtn=e.target.closest('[data-nav]');  
- if(navBtn){e.preventDefault();render(navBtn.getAttribute('data-nav'));return;}  
- var tabBtn=e.target.closest('[data-tab]');  
- if(tabBtn){render(tabBtn.getAttribute('data-tab'));return;}  
- var toggle=e.target.closest('#nav-toggle');  
- if(toggle){var list=document.getElementById('site-nav-list');if(list)list.classList.toggle('open');return;}  
- var dayBtn=e.target.closest('[data-day]');  
- if(dayBtn){  
- document.querySelectorAll('[data-day]').forEach(function(b){b.setAttribute('aria-pressed', b===dayBtn ? 'true':'false');});  
+ initTheme();
+ window.scrollTo({top:0,behavior:'auto'});
+ }
+
+ function showArquitectura(){
+ rootEl.hidden=true;
+ iaView.hidden=false;
+ autoReveal(iaView);
+ window.scrollTo({top:0,behavior:'auto'});
+ }
+ function hideArquitectura(){
+ iaView.hidden=true;
+ rootEl.hidden=false;
+ window.scrollTo({top:0,behavior:'auto'});
+ }
+
+ document.addEventListener('click',function(e){
+ var iaBack=e.target.closest('#ia-back');
+ if(iaBack){hideArquitectura();return;}
+ var navBtn=e.target.closest('[data-nav]');
+ if(navBtn){
+ e.preventDefault();
+ var id=navBtn.getAttribute('data-nav');
+ if(id==='arquitectura'){showArquitectura();return;}
+ render(id);
+ return;
+ }
+ var themeBtn=e.target.closest('#theme-toggle');
+ if(themeBtn){
+ var next=document.documentElement.getAttribute('data-theme')==='light' ? 'dark' : 'light';
+ applyTheme(next);
+ return;
+ }
+ var toggle=e.target.closest('#nav-toggle');
+ if(toggle){var list=document.getElementById('site-nav-list');if(list)list.classList.toggle('open');return;}
+ var dayBtn=e.target.closest('[data-day]');
+ if(dayBtn){
+ document.querySelectorAll('[data-day]').forEach(function(b){b.setAttribute('aria-pressed', b===dayBtn ? 'true':'false');});
  var tl=document.getElementById('agenda-timeline');
  if(tl){ tl.innerHTML=agendaDay(dayBtn.getAttribute('data-day')); autoReveal(tl); }
  return;
- }  
- var sizeBtn=e.target.closest('[data-size]');  
- if(sizeBtn){  
- document.querySelectorAll('[data-size]').forEach(function(b){b.setAttribute('aria-pressed', b===sizeBtn ? 'true':'false');});  
- var size=sizeBtn.getAttribute('data-size');  
- deviceEl.className='device dw-'+size;  
- var labels={desktop:'1180px · vista escritorio',tablet:'760px · vista tablet',mobile:'390px · vista celular'};  
- document.getElementById('device-size-label').textContent=labels[size];  
- return;  
- }  
- var modeBtn=e.target.closest('[data-mode]');  
- if(modeBtn){  
- document.querySelectorAll('[data-mode]').forEach(function(b){b.setAttribute('aria-pressed', b===modeBtn ? 'true':'false');});  
- var mode=modeBtn.getAttribute('data-mode');  
- document.getElementById('view-ia').hidden = mode!=='ia';  
- document.getElementById('view-proto').hidden = mode!=='proto';  
- return;  
- }  
- });  
-  
+ }
+ });
+
  render('inicio');
- var iaView=document.getElementById('view-ia');
- if(iaView) autoReveal(iaView);
 })();
 </script>  
 </body>  
