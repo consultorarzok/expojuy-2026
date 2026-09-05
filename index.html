@@ -45,18 +45,12 @@
  .icon{width:1em;height:1em;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none;vertical-align:-.15em;}  
  .idx-badge{font-family:'JetBrains Mono',monospace;font-size:.72rem;font-weight:600;color:var(--purple);background:var(--surface-2);border:1px solid var(--border);border-radius:999px;width:1.9em;height:1.9em;display:inline-flex;align-items:center;justify-content:center;}  
   
- .lamp-toggle{position:relative;flex:none;width:44px;height:56px;background:transparent;border:none;padding:0;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;}  
- .lamp-toggle .bulb{fill:var(--surface-2);stroke:var(--border);stroke-width:1.5;transition:fill .3s ease,filter .3s ease,stroke .3s ease;}  
- .lamp-toggle .filament{stroke:var(--muted);stroke-width:1.4;fill:none;transition:stroke .3s ease;}  
- .lamp-toggle .base{fill:var(--muted);opacity:.45;transition:opacity .3s ease;}  
- .lamp-toggle .cord{stroke:var(--muted);stroke-width:1.5;}  
- .lamp-toggle .ring{fill:var(--surface);stroke:var(--muted);stroke-width:1.5;transform-origin:12px 30px;transition:transform .18s ease;}  
- .lamp-toggle[aria-pressed="true"] .bulb{fill:#FFDE85;stroke:#E8B33D;filter:drop-shadow(0 0 7px rgba(255,196,64,.75));}  
- .lamp-toggle[aria-pressed="true"] .filament{stroke:#9a6a10;}  
- .lamp-toggle[aria-pressed="true"] .base{opacity:.7;}  
- .lamp-toggle.pulled .ring{transform:translateY(3px) scale(.94);}  
- .lamp-toggle:hover .ring{transform:translateY(1px);}  
- @media (prefers-reduced-motion: reduce){ .lamp-toggle .ring{transition:none;} }  
+ .theme-toggle{position:relative;flex:none;width:52px;height:28px;background:transparent;border:none;padding:0;border-radius:999px;}
+ .theme-toggle .track{position:absolute;inset:0;border-radius:999px;background:#fff;border:1.5px solid var(--border);transition:background .25s ease,border-color .25s ease;}
+ .theme-toggle .knob{position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:#15121F;box-shadow:0 1px 4px rgba(0,0,0,.35);transition:transform .25s ease,background .25s ease;}
+ :root[data-theme="dark"] .theme-toggle .track{background:#15121F;border-color:var(--border);}
+ :root[data-theme="dark"] .theme-toggle .knob{transform:translateX(24px);background:#fff;}
+ @media (prefers-reduced-motion: reduce){ .theme-toggle .knob,.theme-toggle .track{transition:none;} }
   
  .mono{font-family:'JetBrains Mono',monospace;}  
  .eyebrow{font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:.09em;font-size:.7rem;color:var(--muted);font-weight:600;}  
@@ -277,15 +271,10 @@
  <button type="button" data-mode="proto" role="tab" aria-pressed="true">Prototipo navegable</button>  
  <button type="button" data-mode="ia" role="tab" aria-pressed="false">Arquitectura de información</button>  
  </div>  
- <button type="button" class="lamp-toggle" id="lamp-toggle" aria-pressed="true" title="Modo claro / oscuro" aria-label="Cambiar entre modo claro y modo oscuro">  
- <svg viewBox="0 0 24 40" width="24" height="40" aria-hidden="true">  
- <circle class="bulb" cx="12" cy="10" r="7"/>  
- <path class="filament" d="M9 10a3 3 0 0 1 6 0"/>  
- <path class="base" d="M9 17h6v2a2 2 0 0 1-2 2h-2a2 2 0 0 1-2-2Z"/>  
- <line class="cord" x1="12" y1="24" x2="12" y2="30"/>  
- <circle class="ring" cx="12" cy="32" r="2.6"/>  
- </svg>  
- </button>  
+ <button type="button" class="theme-toggle" id="theme-toggle" role="switch" aria-checked="false" title="Modo claro / oscuro" aria-label="Cambiar entre modo claro y modo oscuro">
+ <span class="track"></span>
+ <span class="knob"></span>
+ </button>
  </div>  
  </div>  
   
@@ -745,28 +734,26 @@
  '</svg>';  
  }  
   
- // ---- theme (lamp toggle) ----  
- var lampBtn=document.getElementById('lamp-toggle');  
- function systemPrefersDark(){ return !!(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches); }  
- function applyTheme(t){  
- document.documentElement.setAttribute('data-theme', t);  
- if(lampBtn) lampBtn.setAttribute('aria-pressed', t==='light' ? 'true' : 'false');  
- try{ localStorage.setItem('expojuy-theme', t); }catch(e){}  
- }  
- function initTheme(){  
- var saved=null;  
- try{ saved=localStorage.getItem('expojuy-theme'); }catch(e){}  
- applyTheme(saved || (systemPrefersDark() ? 'dark' : 'light'));  
- }  
- if(lampBtn){  
- lampBtn.addEventListener('click', function(){  
- var next = document.documentElement.getAttribute('data-theme')==='light' ? 'dark' : 'light';  
- lampBtn.classList.add('pulled');  
- setTimeout(function(){ lampBtn.classList.remove('pulled'); }, 180);  
- applyTheme(next);  
- });  
- }  
- initTheme();  
+ // ---- theme (light/dark switch) ----
+ var themeBtn=document.getElementById('theme-toggle');
+ function systemPrefersDark(){ return !!(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches); }
+ function applyTheme(t){
+ document.documentElement.setAttribute('data-theme', t);
+ if(themeBtn) themeBtn.setAttribute('aria-checked', t==='dark' ? 'true' : 'false');
+ try{ localStorage.setItem('expojuy-theme', t); }catch(e){}
+ }
+ function initTheme(){
+ var saved=null;
+ try{ saved=localStorage.getItem('expojuy-theme'); }catch(e){}
+ applyTheme(saved || (systemPrefersDark() ? 'dark' : 'light'));
+ }
+ if(themeBtn){
+ themeBtn.addEventListener('click', function(){
+ var next = document.documentElement.getAttribute('data-theme')==='light' ? 'dark' : 'light';
+ applyTheme(next);
+ });
+ }
+ initTheme();
   
  // ---- render ----  
  var deviceEl=document.getElementById('device');  
