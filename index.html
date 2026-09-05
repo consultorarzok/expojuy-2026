@@ -186,7 +186,8 @@
  .strip span{font-size:.8rem;color:var(--muted);font-weight:600;}
  .logo-row{display:flex;flex-wrap:wrap;gap:1.2rem;align-items:center;justify-content:center;}
  .logo-row img{height:56px;width:auto;max-width:170px;object-fit:contain;background:#fff;border-radius:12px;padding:.65rem 1rem;box-shadow:0 2px 10px rgba(20,10,40,.12);box-sizing:content-box;}
- @media (max-width:560px){ .logo-row img{height:40px;padding:.5rem .8rem;} }
+ .logo-row img.logo-featured{height:84px;}
+ @media (max-width:560px){ .logo-row img{height:40px;padding:.5rem .8rem;} .logo-row img.logo-featured{height:56px;} }
  .logo-marquee{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);}
  .logo-marquee-track{display:flex;gap:1.4rem;width:max-content;align-items:center;animation:marquee 22s linear infinite;}
  .logo-marquee:hover .logo-marquee-track{animation-play-state:paused;}
@@ -525,7 +526,7 @@
  '<div class="logo-row">'+
  '<img src="images/org-ministerio.png" alt="Ministerio de Desarrollo Económico y Producción de Jujuy" loading="lazy">'+
  '<img src="images/org-camara-comercio-exterior.png" alt="Cámara de Comercio Exterior de Jujuy" loading="lazy">'+
- '<img src="images/org-jujuy-gente.png" alt="Gobierno de Jujuy — Jujuy Con la Gente" loading="lazy">'+
+ '<img src="images/org-jujuy-gente.png" alt="Gobierno de Jujuy — Jujuy Con la Gente" loading="lazy" class="logo-featured">'+
  '<img src="images/org-municipalidad-ssj.png" alt="Municipalidad de San Salvador de Jujuy" loading="lazy">'+
  '<img src="images/org-cfi.png" alt="Consejo Federal de Inversiones" loading="lazy">'+
  '<img src="images/org-camara-argentina.png" alt="Cámara Argentina de Comercio y Servicios" loading="lazy">'+
