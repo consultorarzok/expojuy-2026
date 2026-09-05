@@ -67,6 +67,11 @@
  .stagger-4{transition-delay:.32s;}
  .stagger-5{transition-delay:.4s;}
  .stagger-6{transition-delay:.48s;}
+
+ /* ---------- subtle rising tech grid background ---------- */
+ .tech-bg{position:fixed;inset:0;pointer-events:none;z-index:-1;opacity:.55;background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);background-size:44px 44px;animation:tech-rise 40s linear infinite;-webkit-mask-image:linear-gradient(to bottom,transparent,#000 18%,#000 82%,transparent);mask-image:linear-gradient(to bottom,transparent,#000 18%,#000 82%,transparent);}
+ @keyframes tech-rise{from{background-position:0 0,0 0;}to{background-position:0 -440px,0 0;}}
+ @media (prefers-reduced-motion: reduce){ .tech-bg{animation:none;} }
   
  .icon{width:1em;height:1em;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none;vertical-align:-.15em;}  
  .idx-badge{font-family:'JetBrains Mono',monospace;font-size:.72rem;font-weight:600;color:var(--purple);background:var(--surface-2);border:1px solid var(--border);border-radius:999px;width:1.9em;height:1.9em;display:inline-flex;align-items:center;justify-content:center;}  
@@ -171,13 +176,13 @@
   
  .strip{display:flex;flex-wrap:wrap;gap:.8rem 2rem;align-items:center;justify-content:center;padding:1.6rem;border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
  .strip span{font-size:.8rem;color:var(--muted);font-weight:600;}
- .logo-row{display:flex;flex-wrap:wrap;gap:2.8rem;align-items:center;justify-content:center;}
- .logo-row img{height:64px;width:auto;object-fit:contain;}
- @media (max-width:560px){ .logo-row img{height:48px;} }
+ .logo-row{display:flex;flex-wrap:wrap;gap:1.2rem;align-items:center;justify-content:center;}
+ .logo-row img{height:56px;width:auto;max-width:170px;object-fit:contain;background:#fff;border-radius:12px;padding:.65rem 1rem;box-shadow:0 2px 10px rgba(20,10,40,.12);box-sizing:content-box;}
+ @media (max-width:560px){ .logo-row img{height:40px;padding:.5rem .8rem;} }
  .logo-marquee{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);}
- .logo-marquee-track{display:flex;gap:3rem;width:max-content;align-items:center;animation:marquee 22s linear infinite;}
+ .logo-marquee-track{display:flex;gap:1.4rem;width:max-content;align-items:center;animation:marquee 22s linear infinite;}
  .logo-marquee:hover .logo-marquee-track{animation-play-state:paused;}
- .logo-marquee-track img{height:36px;width:auto;flex:none;object-fit:contain;}
+ .logo-marquee-track img{height:32px;width:auto;flex:none;object-fit:contain;background:#fff;border-radius:9px;padding:.5rem .85rem;box-shadow:0 2px 8px rgba(20,10,40,.1);box-sizing:content-box;}
  @keyframes marquee{from{transform:translateX(0);}to{transform:translateX(-50%);}}
  @media (prefers-reduced-motion: reduce){.logo-marquee-track{animation:none;}}
  .edicion-photo{width:100%;border-radius:10px;margin-top:.6rem;aspect-ratio:3/2;object-fit:cover;}
@@ -219,7 +224,7 @@
  .tier h4{font-size:.85rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-family:'JetBrains Mono',monospace;margin-bottom:.8rem;}  
  .sponsor-slot{aspect-ratio:2.4/1;border:1.5px dashed var(--border);border-radius:12px;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:.78rem;background:var(--surface);}
  .tier-1 .sponsor-slot{aspect-ratio:3.4/1;font-size:.9rem;}
- .sponsor-slot.filled{border-style:solid;padding:1rem;}
+ .sponsor-slot.filled{border-style:solid;padding:1rem;background:#fff;}
  .sponsor-slot.filled img{max-width:75%;max-height:65%;object-fit:contain;}
  .tier-grid{grid-template-columns:repeat(3,1fr);}  
  @media (max-width: 620px){ .tier-grid{grid-template-columns:repeat(2,1fr);} }  
@@ -260,6 +265,7 @@
 <body>  
   
   
+<div class="tech-bg" aria-hidden="true"></div>
 <div id="screen-root"></div>
 
 <!-- ============ DOCUMENTACIÓN: ARQUITECTURA DE INFORMACIÓN ============ -->
