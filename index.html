@@ -177,8 +177,9 @@
   
  .strip{display:flex;flex-wrap:wrap;gap:.8rem 2rem;align-items:center;justify-content:center;padding:1.6rem;border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
  .strip span{font-size:.8rem;color:var(--muted);font-weight:600;}
- .logo-row{display:flex;flex-wrap:wrap;gap:2.2rem;align-items:center;justify-content:center;}
- .logo-row img{height:34px;width:auto;object-fit:contain;}
+ .logo-row{display:flex;flex-wrap:wrap;gap:2.8rem;align-items:center;justify-content:center;}
+ .logo-row img{height:64px;width:auto;object-fit:contain;}
+ @media (max-width:560px){ .logo-row img{height:48px;} }
  .logo-marquee{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);}
  .logo-marquee-track{display:flex;gap:3rem;width:max-content;align-items:center;animation:marquee 22s linear infinite;}
  .logo-marquee:hover .logo-marquee-track{animation-play-state:paused;}
@@ -221,8 +222,10 @@
   
  .tier{margin-bottom:1.6rem;}  
  .tier h4{font-size:.85rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-family:'JetBrains Mono',monospace;margin-bottom:.8rem;}  
- .sponsor-slot{aspect-ratio:2.4/1;border:1.5px dashed var(--border);border-radius:12px;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:.78rem;background:var(--surface);}  
- .tier-1 .sponsor-slot{aspect-ratio:3.4/1;font-size:.9rem;}  
+ .sponsor-slot{aspect-ratio:2.4/1;border:1.5px dashed var(--border);border-radius:12px;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:.78rem;background:var(--surface);}
+ .tier-1 .sponsor-slot{aspect-ratio:3.4/1;font-size:.9rem;}
+ .sponsor-slot.filled{border-style:solid;padding:1rem;}
+ .sponsor-slot.filled img{max-width:75%;max-height:65%;object-fit:contain;}
  .tier-grid{grid-template-columns:repeat(3,1fr);}  
  @media (max-width: 620px){ .tier-grid{grid-template-columns:repeat(2,1fr);} }  
   
@@ -506,6 +509,8 @@
  '<div class="section-pad" style="padding-bottom:1.2rem;">'+
  '<span class="eyebrow" style="display:block;text-align:center;margin-bottom:1rem;">Organizan y acompañan</span>'+
  '<div class="logo-row">'+
+ '<img src="images/org-ministerio.png" alt="Ministerio de Desarrollo Económico y Producción de Jujuy" loading="lazy">'+
+ '<img src="images/org-camara-comercio-exterior.png" alt="Cámara de Comercio Exterior de Jujuy" loading="lazy">'+
  '<img src="images/org-jujuy-gente.png" alt="Gobierno de Jujuy — Jujuy Con la Gente" loading="lazy">'+
  '<img src="images/org-municipalidad-ssj.png" alt="Municipalidad de San Salvador de Jujuy" loading="lazy">'+
  '<img src="images/org-cfi.png" alt="Consejo Federal de Inversiones" loading="lazy">'+
@@ -519,10 +524,18 @@
  '<img src="images/org-kelimpio-sponsor.png" alt="KeLimpio" loading="lazy">'+
  '<img src="images/org-seguros-jujuy-sponsor.png" alt="Compañía de Seguros de Jujuy" loading="lazy">'+
  '<img src="images/org-cannava-sponsor.png" alt="Cannava Sociedad del Estado" loading="lazy">'+
+ '<img src="images/sponsor-club-emprendedores.png" alt="Club de Emprendedores" loading="lazy">'+
+ '<img src="images/sponsor-facultad-ingenieria.png" alt="Facultad de Ingeniería — UNJu" loading="lazy">'+
+ '<img src="images/sponsor-pti-turismo.png" alt="PTI Turismo Costero — Región de Antofagasta" loading="lazy">'+
+ '<img src="images/sponsor-consultorarz.png" alt="Consultora RZ" loading="lazy">'+
  '<img src="images/org-exar-sponsor.png" alt="" aria-hidden="true">'+
  '<img src="images/org-kelimpio-sponsor.png" alt="" aria-hidden="true">'+
  '<img src="images/org-seguros-jujuy-sponsor.png" alt="" aria-hidden="true">'+
  '<img src="images/org-cannava-sponsor.png" alt="" aria-hidden="true">'+
+ '<img src="images/sponsor-club-emprendedores.png" alt="" aria-hidden="true">'+
+ '<img src="images/sponsor-facultad-ingenieria.png" alt="" aria-hidden="true">'+
+ '<img src="images/sponsor-pti-turismo.png" alt="" aria-hidden="true">'+
+ '<img src="images/sponsor-consultorarz.png" alt="" aria-hidden="true">'+
  '</div></div>'+
  '</div>'+
  '<div class="section-pad">'+  
@@ -617,14 +630,15 @@
  return ''+  
  pageHead('Sponsors','Auspiciantes')+  
  '<div class="section-pad">'+  
- '<p class="muted" style="max-width:60ch;margin-bottom:2rem;">ExpoJuy 2026 se sostiene gracias al acompañamiento de empresas e instituciones comprometidas con el desarrollo productivo del Norte Argentino.</p>'+  
- '<div class="tier tier-1"><h4>Sponsor principal</h4><div class="grid" style="grid-template-columns:1fr;"><div class="sponsor-slot">Espacio disponible · Sponsor principal</div></div></div>'+  
- '<div class="tier"><h4>Sponsors Gold</h4><div class="grid tier-grid">'+  
- '<div class="sponsor-slot">Espacio disponible</div><div class="sponsor-slot">Espacio disponible</div><div class="sponsor-slot">Espacio disponible</div>'+  
- '</div></div>'+  
- '<div class="tier"><h4>Sponsors Silver</h4><div class="grid tier-grid">'+  
- '<div class="sponsor-slot">Espacio disponible</div><div class="sponsor-slot">Espacio disponible</div><div class="sponsor-slot">Espacio disponible</div><div class="sponsor-slot">Espacio disponible</div><div class="sponsor-slot">Espacio disponible</div>'+  
- '</div></div>'+  
+ '<p class="muted" style="max-width:60ch;margin-bottom:.6rem;">ExpoJuy 2026 se sostiene gracias al acompañamiento de empresas e instituciones comprometidas con el desarrollo productivo del Norte Argentino.</p>'+
+ '<p class="muted mono" style="max-width:60ch;margin-bottom:2rem;font-size:.72rem;">Logos de ejemplo tomados de ediciones anteriores — la nómina de sponsors 2026 está sujeta a confirmación de la organización.</p>'+
+ '<div class="tier tier-1"><h4>Sponsor principal</h4><div class="grid" style="grid-template-columns:1fr;"><div class="sponsor-slot filled"><img src="images/org-exar-sponsor.png" alt="EXAR"></div></div></div>'+
+ '<div class="tier"><h4>Sponsors Gold</h4><div class="grid tier-grid">'+
+ '<div class="sponsor-slot filled"><img src="images/org-cannava-sponsor.png" alt="Cannava Sociedad del Estado"></div><div class="sponsor-slot filled"><img src="images/org-seguros-jujuy-sponsor.png" alt="Compañía de Seguros de Jujuy"></div><div class="sponsor-slot filled"><img src="images/sponsor-club-emprendedores.png" alt="Club de Emprendedores"></div>'+
+ '</div></div>'+
+ '<div class="tier"><h4>Sponsors Silver</h4><div class="grid tier-grid">'+
+ '<div class="sponsor-slot filled"><img src="images/org-kelimpio-sponsor.png" alt="KeLimpio"></div><div class="sponsor-slot filled"><img src="images/sponsor-facultad-ingenieria.png" alt="Facultad de Ingeniería — UNJu"></div><div class="sponsor-slot filled"><img src="images/sponsor-pti-turismo.png" alt="PTI Turismo Costero"></div><div class="sponsor-slot filled"><img src="images/sponsor-consultorarz.png" alt="Consultora RZ"></div><div class="sponsor-slot">Espacio disponible</div>'+
+ '</div></div>'+
  '<div class="cta-band" style="border-radius:14px;margin-top:1rem;"><div><h3>¿Tu empresa quiere ser sponsor?</h3><p class="muted">Sumate a las marcas que apoyan ExpoJuy 2026.</p></div><a href="#" class="btn btn-primary" data-nav="contacto">Quiero ser sponsor</a></div>'+  
  '</div>';  
  },  
