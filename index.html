@@ -209,7 +209,7 @@
  .search-mock{display:flex;align-items:center;gap:.5rem;background:var(--surface);border:1px solid var(--border);border-radius:999px;padding:.5rem 1rem;font-size:.82rem;color:var(--muted);flex:1;min-width:180px;}  
   
  .expo-card{display:grid;gap:.6rem;}  
- .expo-thumb{width:44px;height:44px;border-radius:10px;background:url('images/img-expositor-stand.jpg') center/cover;}
+ .expo-thumb{width:72px;height:72px;border-radius:50%;background-size:cover;background-position:center top;flex:none;}
   
  .timeline{display:grid;gap:.9rem;}  
  .tl-item{display:grid;grid-template-columns:88px 1fr;gap:1rem;padding:1rem 1.1rem;background:var(--surface);border:1px solid var(--border);border-radius:14px;align-items:start;}  
@@ -591,11 +591,12 @@
  '</div>';
  },  
  expositores:function(){  
- var cards='';  
- var rubros=['Economía del Conocimiento','Minería','Agroindustria','Turismo','Energía','Comercio Exterior','Economía del Conocimiento','Agroindustria'];  
- for(var i=0;i<8;i++){  
- cards+='<div class="card expo-card"><div class="expo-thumb"></div><h4 style="font-family:\'Unbounded\',sans-serif;font-size:.92rem;">Expositor ejemplo '+(i+1<10?'0'+(i+1):i+1)+'</h4>'+tag(rubros[i])+'<p class="muted" style="font-size:.8rem;">Stand [A-'+(i+10)+']</p><a href="#" class="btn btn-ghost" style="font-size:.78rem;padding:.5em .9em;">Ver ficha</a></div>';  
- }  
+ var cards='';
+ var rubros=['Economía del Conocimiento','Minería','Agroindustria','Turismo','Energía','Comercio Exterior','Economía del Conocimiento','Agroindustria'];
+ for(var i=0;i<8;i++){
+ var n=(i+1<10?'0'+(i+1):i+1);
+ cards+='<div class="card expo-card"><div class="expo-thumb" style="background-image:url(\'images/expositor-'+n+'.jpg\');"></div><h4 style="font-family:\'Unbounded\',sans-serif;font-size:.92rem;">Expositor ejemplo '+n+'</h4>'+tag(rubros[i])+'<p class="muted" style="font-size:.8rem;">Stand [A-'+(i+10)+']</p><a href="#" class="btn btn-ghost" style="font-size:.78rem;padding:.5em .9em;">Ver ficha</a></div>';
+ }
  return ''+  
  pageHead('Expositores','Directorio')+  
  '<div class="filter-bar">'+  
