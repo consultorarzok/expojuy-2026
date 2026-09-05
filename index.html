@@ -131,7 +131,14 @@
  .site-nav ul{list-style:none;display:flex;gap:1.3rem;margin:0;padding:0;}  
  .site-nav a{font-size:.85rem;font-weight:600;color:var(--muted);text-decoration:none;padding:.3rem 0;border-bottom:2px solid transparent;}  
  .site-nav a[data-active="true"]{color:var(--purple);border-color:var(--purple);}  
- .nav-toggle{display:none;background:var(--surface-2);border:1px solid var(--border);border-radius:8px;padding:.4rem .6rem;font-size:.8rem;font-weight:600;}  
+ .nav-toggle{display:none;background:var(--surface-2);border:1px solid var(--border);border-radius:50%;width:40px;height:40px;padding:0;align-items:center;justify-content:center;flex:none;}
+ .nav-toggle span{display:block;width:16px;height:2px;border-radius:2px;background:var(--ink);position:relative;}
+ .nav-toggle span::before,.nav-toggle span::after{content:"";position:absolute;left:0;width:16px;height:2px;border-radius:2px;background:var(--ink);transition:transform .2s ease;}
+ .nav-toggle span::before{top:-5px;}
+ .nav-toggle span::after{top:5px;}
+ .nav-toggle[aria-expanded="true"] span{background:transparent;}
+ .nav-toggle[aria-expanded="true"] span::before{transform:translateY(5px) rotate(45deg);}
+ .nav-toggle[aria-expanded="true"] span::after{transform:translateY(-5px) rotate(-45deg);}
  @media (max-width: 720px){  
  .site-nav ul{display:none;}  
  .site-nav ul.open{display:flex;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:var(--surface);border-bottom:1px solid var(--border);padding:.8rem 1.4rem;gap:.7rem;z-index:5;}  
@@ -413,7 +420,7 @@
  '<div class="site-nav">'+
  '<ul id="site-nav-list">'+links+'</ul>'+
  '<button type="button" class="theme-toggle" id="theme-toggle" role="switch" aria-checked="false" title="Modo claro / oscuro" aria-label="Cambiar entre modo claro y modo oscuro"><span class="track"></span><span class="knob"></span></button>'+
- '<button type="button" class="nav-toggle" id="nav-toggle">Menú ≡</button>'+
+ '<button type="button" class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-label="Abrir menú" title="Menú"><span></span></button>'+
  '</div>'+
  '</header>';  
  }  
@@ -849,7 +856,12 @@
  return;
  }
  var toggle=e.target.closest('#nav-toggle');
- if(toggle){var list=document.getElementById('site-nav-list');if(list)list.classList.toggle('open');return;}
+ if(toggle){
+ var list=document.getElementById('site-nav-list');
+ var open=list ? list.classList.toggle('open') : false;
+ toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+ return;
+ }
  var dayBtn=e.target.closest('[data-day]');
  if(dayBtn){
  document.querySelectorAll('[data-day]').forEach(function(b){b.setAttribute('aria-pressed', b===dayBtn ? 'true':'false');});
