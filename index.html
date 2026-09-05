@@ -68,10 +68,10 @@
  .stagger-5{transition-delay:.4s;}
  .stagger-6{transition-delay:.48s;}
 
- /* ---------- loose rising bubbles background ---------- */
+ /* ---------- loose rising tech squares background ---------- */
  .tech-bg{position:fixed;inset:0;pointer-events:none;z-index:-1;overflow:hidden;}
- .tech-bg .bubble{position:absolute;bottom:-5vh;border-radius:50%;opacity:0;animation:bubble-rise linear infinite;}
- @keyframes bubble-rise{0%{transform:translateY(0) translateX(0);opacity:0;}10%{opacity:var(--bubble-opacity,.3);}90%{opacity:var(--bubble-opacity,.3);}100%{transform:translateY(-110vh) translateX(var(--drift,0px));opacity:0;}}
+ .tech-bg .bubble{position:absolute;bottom:-5vh;border-radius:2px;opacity:0;animation:bubble-rise linear infinite;}
+ @keyframes bubble-rise{0%{transform:translateY(0) translateX(0) rotate(var(--rotate,0deg));opacity:0;}10%{opacity:var(--bubble-opacity,.3);}90%{opacity:var(--bubble-opacity,.3);}100%{transform:translateY(-110vh) translateX(var(--drift,0px)) rotate(var(--rotate,0deg));opacity:0;}}
  @media (prefers-reduced-motion: reduce){ .tech-bg .bubble{display:none;} }
   
  .icon{width:1em;height:1em;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none;vertical-align:-.15em;}  
@@ -490,11 +490,11 @@
  return ''+  
  '<section class="hero">'+  
  '<div class="hero-inner">'+  
- '<span class="eyebrow">San Salvador de Jujuy · [fecha a confirmar] 2026</span>'+  
+ '<span class="eyebrow">San Salvador de Jujuy · 9 al 12 de octubre 2026 · 17ª edición</span>'+
  '<h1>Conectando países.<br>Creando oportunidades.</h1>'+  
  '<p class="lead">ExpoJuy 2026 reúne a empresas, organismos públicos y profesionales del Norte Argentino en la plataforma de negocios, innovación y economía del conocimiento más importante de la provincia.</p>'+  
  '<div class="hero-ctas"><a href="#" class="btn btn-light" title="Plataforma de venta de entradas — se integrará una vez definida por la organización">'+icon('ticket')+' Entradas</a><a href="#" class="btn btn-ghost" style="border-color:rgba(255,255,255,.5);color:#fff;" data-nav="expositores">Ver expositores</a><a href="#" class="btn btn-ghost" style="border-color:rgba(255,255,255,.5);color:#fff;" data-nav="agenda">Ver agenda</a></div>'+  
- '<div class="hero-meta">'+tag(icon('pin')+' San Salvador de Jujuy')+tag(icon('calendar')+' Fecha a confirmar')+tag(icon('ticket')+' Entrada con costo*')+'</div>'+
+ '<div class="hero-meta">'+tag(icon('pin')+' Ciudad Cultural, San Salvador de Jujuy')+tag(icon('calendar')+' 9 al 12 de octubre 2026')+tag(icon('ticket')+' Entrada con costo*')+'</div>'+
  '<p class="hero-footnote">*Valor de la entrada a confirmar por la organización.</p>'+
  '</div>'+
  '</section>'+
@@ -594,7 +594,7 @@
  '<div class="section-head" style="margin-top:2.4rem;"><h2>Ediciones anteriores</h2></div>'+  
  '<div class="timeline">'+  
  '<div class="tl-item"><time>2024</time><div><b>ExpoJuy 2024</b><p class="muted" style="font-size:.85rem;">Edición de referencia tomada como base para esta nueva propuesta digital.</p></div></div>'+
- '<div class="tl-item"><time>2026</time><div><b>ExpoJuy 2026 — próxima edición</b><p class="muted" style="font-size:.85rem;">Primera edición con el Programa Provincial de Desafíos Tecnológicos.</p></div></div>'+
+ '<div class="tl-item"><time>2026</time><div><b>ExpoJuy 2026 — 17ª edición</b><p class="muted" style="font-size:.85rem;">Del 9 al 12 de octubre en la Ciudad Cultural. Primera edición con el Programa Provincial de Desafíos Tecnológicos.</p></div></div>'+
  '</div>'+
  '<div class="grid" style="margin-top:1rem;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));">'+
  '<figure style="margin:0;"><img class="edicion-photo" src="images/edicion2024-aerea.jpg" alt="Vista aérea nocturna de ExpoJuy 2024" loading="lazy"><figcaption class="muted" style="font-size:.72rem;margin-top:.4rem;">ExpoJuy 2024 — vista aérea del predio (foto real)</figcaption></figure>'+
@@ -883,23 +883,24 @@
 
  render('inicio');
 
- // ---- loose rising bubbles ----
+ // ---- loose rising tech squares ----
  (function initBubbles(){
  var container=document.querySelector('.tech-bg');
  if(!container) return;
- var colors=['var(--indigo)','var(--teal)','var(--lavender)','var(--purple)'];
+ var colors=['#3DD6F5','#9D4EDD'];
  var count=18;
  for(var i=0;i<count;i++){
  var b=document.createElement('span');
  b.className='bubble';
- var size=(2+Math.random()*4).toFixed(1);
+ var size=(3+Math.random()*5).toFixed(1);
  var left=(Math.random()*100).toFixed(1);
  var duration=(14+Math.random()*18).toFixed(1);
  var delay=(-Math.random()*duration).toFixed(1);
  var drift=Math.round(Math.random()*50-25);
+ var rotate=Math.round(Math.random()*90-45);
  var opacity=(0.15+Math.random()*0.25).toFixed(2);
  var color=colors[Math.floor(Math.random()*colors.length)];
- b.style.cssText='width:'+size+'px;height:'+size+'px;left:'+left+'%;background:'+color+';animation-duration:'+duration+'s;animation-delay:'+delay+'s;--drift:'+drift+'px;--bubble-opacity:'+opacity+';';
+ b.style.cssText='width:'+size+'px;height:'+size+'px;left:'+left+'%;background:'+color+';animation-duration:'+duration+'s;animation-delay:'+delay+'s;--drift:'+drift+'px;--rotate:'+rotate+'deg;--bubble-opacity:'+opacity+';';
  container.appendChild(b);
  }
  })();
