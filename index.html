@@ -186,6 +186,7 @@
  @keyframes marquee{from{transform:translateX(0);}to{transform:translateX(-50%);}}
  @media (prefers-reduced-motion: reduce){.logo-marquee-track{animation:none;}}
  .edicion-photo{width:100%;border-radius:10px;margin-top:.6rem;aspect-ratio:3/2;object-fit:cover;}
+ .video-feature{width:100%;border-radius:16px;box-shadow:var(--shadow);display:block;background:#000;aspect-ratio:16/9;object-fit:cover;}
   
  .cta-band{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1rem;padding:2.2rem clamp(1.2rem,5vw,3rem);background:var(--surface-2);}  
  .cta-band h3{font-size:1.15rem;}  
@@ -482,10 +483,16 @@
  '<div class="hero-ctas"><a href="#" class="btn btn-light" data-nav="expositores">Ver expositores</a><a href="#" class="btn btn-ghost" style="border-color:rgba(255,255,255,.5);color:#fff;" data-nav="agenda">Ver agenda</a></div>'+  
  '<div class="hero-meta">'+tag(icon('pin')+' San Salvador de Jujuy')+tag(icon('calendar')+' Fecha a confirmar')+tag(icon('ticket')+' Entrada libre y gratuita*')+'</div>'+  
  '<p class="hero-footnote">*Condición sujeta a confirmación de la organización.</p>'+  
- '</div>'+  
- '</section>'+  
- '<div class="section-pad">'+  
- '<span class="eyebrow">Proyección de la edición</span>'+  
+ '</div>'+
+ '</section>'+
+ '<div class="section-pad">'+
+ '<span class="eyebrow">Así fue ExpoJuy 2024</span>'+
+ '<h2 style="margin-top:.4rem;font-size:clamp(1.3rem,2.6vw,1.8rem);">Recorré la edición anterior</h2>'+
+ '<video class="video-feature" style="margin-top:1rem;" controls preload="none" poster="images/expo2024-highlights-poster.jpg"><source src="images/expo2024-highlights.mp4" type="video/mp4"></video>'+
+ '<p class="muted" style="font-size:.78rem;margin-top:.5rem;">Video real de ExpoJuy 2024, provisto por la organización. Sin subtítulos disponibles.</p>'+
+ '</div>'+
+ '<div class="section-pad">'+
+ '<span class="eyebrow">Proyección de la edición</span>'+
  '<div class="grid stat-grid" style="margin-top:1rem;">'+  
  '<div class="card stat"><b>+120</b><span>expositores esperados</span></div>'+  
  '<div class="card stat"><b>6</b><span>rubros productivos</span></div>'+  
