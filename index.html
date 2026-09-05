@@ -3,7 +3,47 @@
 <head>  
 <meta charset="utf-8">  
 <meta name="viewport" content="width=device-width, initial-scale=1">  
-<title>ExpoJuy 2026 — Mockup navegable</title>  
+<title>ExpoJuy 2026 — Mockup navegable</title>
+<meta name="description" content="ExpoJuy 2026: 17ª edición de la exposición productiva del Norte Argentino. Del 9 al 12 de octubre de 2026 en la Ciudad Cultural de San Salvador de Jujuy, con delegaciones de Argentina, Brasil, Chile y Paraguay.">
+<link rel="icon" href="images/expojuy-icon.png">
+
+<!-- Compartir en redes y WhatsApp: sin esto el enlace del evento se pega sin título ni imagen -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="ExpoJuy 2026 — Conectando países, creando oportunidades">
+<meta property="og:description" content="17ª edición · 9 al 12 de octubre de 2026 · Ciudad Cultural, San Salvador de Jujuy.">
+<meta property="og:image" content="https://consultorarzok.github.io/expojuy-2026/images/img-hero.jpg">
+<meta property="og:url" content="https://consultorarzok.github.io/expojuy-2026/">
+<meta name="twitter:card" content="summary_large_image">
+
+<!-- Datos estructurados: Google muestra la tarjeta del evento y los asistentes de IA citan bien fecha y sede -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ExhibitionEvent",
+  "name": "ExpoJuy 2026",
+  "description": "17ª edición de ExpoJuy, la exposición productiva, comercial y de economía del conocimiento del Norte Argentino, con rondas de negocios internacionales del Corredor Bioceánico.",
+  "startDate": "2026-10-09",
+  "endDate": "2026-10-12",
+  "eventStatus": "https://schema.org/EventScheduled",
+  "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+  "image": "https://consultorarzok.github.io/expojuy-2026/images/img-hero.jpg",
+  "url": "https://consultorarzok.github.io/expojuy-2026/",
+  "location": {
+    "@type": "Place",
+    "name": "Ciudad Cultural",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "San Salvador de Jujuy",
+      "addressRegion": "Jujuy",
+      "addressCountry": "AR"
+    }
+  },
+  "organizer": {
+    "@type": "Organization",
+    "name": "Cámara de Comercio Exterior de Jujuy"
+  }
+}
+</script>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap">  
 <style>  
  :root{  
@@ -91,7 +131,7 @@
  .mono{font-family:'JetBrains Mono',monospace;}  
  .eyebrow{font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:.09em;font-size:.7rem;color:var(--muted);font-weight:600;}  
  .tag{display:inline-flex;align-items:center;gap:.35em;padding:.3em .75em;border-radius:999px;font-family:'JetBrains Mono',monospace;font-size:.68rem;background:var(--surface-2);border:1px solid var(--border);color:var(--muted);white-space:nowrap;}  
- .btn{display:inline-flex;align-items:center;gap:.5em;padding:.7em 1.3em;border-radius:999px;font-weight:600;font-size:.88rem;border:1px solid transparent;transition:transform .15s ease, box-shadow .15s ease;}  
+ .btn{display:inline-flex;align-items:center;gap:.5em;padding:.7em 1.3em;border-radius:999px;font-weight:600;font-size:.88rem;border:1px solid transparent;text-decoration:none;transition:transform .15s ease, box-shadow .15s ease;}
  .btn:hover{transform:translateY(-1px);}  
  .btn-primary{background:var(--purple);color:#fff;box-shadow:0 10px 25px -12px rgba(124,15,219,.6);}  
  .btn-ghost{background:transparent;border-color:var(--border);color:var(--ink);}  
@@ -114,7 +154,8 @@
  .node.root rect{fill:var(--accent);stroke:var(--accent);}  
  .node.root text{fill:#fff;}  
  .node.primary rect{stroke:var(--indigo);}  
- .node.global rect{stroke-dasharray:4 3;fill:var(--surface);}  
+ .node.global rect{stroke-dasharray:4 3;fill:var(--surface);}
+ .node.admin rect{stroke-dasharray:6 4;stroke:var(--accent);stroke-width:1.5;fill:var(--surface);}
  .node text{fill:var(--ink);font-family:'Manrope',sans-serif;font-weight:600;}  
  .node .sub{fill:var(--muted);font-weight:500;}  
  .edge{stroke:var(--border);stroke-width:2;fill:none;}  
@@ -128,7 +169,35 @@
  table.coverage td:first-child{font-weight:600;}  
  .coverage-wrap{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:1.3rem 1.4rem;overflow-x:auto;}  
   
- /* ---------- site (inside mockup) ---------- */  
+ /* ---------- acceso y panel de administración ---------- */
+ .acceso-grid{grid-template-columns:repeat(auto-fit,minmax(290px,1fr));align-items:start;}
+ .acceso-card h3{font-family:'Unbounded',sans-serif;font-size:1rem;margin-bottom:.5rem;}
+ .acceso-card p{font-size:.86rem;}
+ .admin-bar{display:flex;flex-wrap:wrap;align-items:center;gap:.8rem;justify-content:space-between;background:#221F33;color:#fff;padding:.65rem clamp(1.1rem,4vw,3rem);font-size:.82rem;}
+ .admin-bar .who{display:flex;align-items:center;gap:.55rem;font-weight:600;}
+ .admin-bar .dot-live{width:8px;height:8px;border-radius:50%;background:#39D98A;flex:none;}
+ .admin-bar .admin-actions{display:flex;gap:.5rem;flex-wrap:wrap;}
+ .admin-bar button{border:1px solid rgba(255,255,255,.5);color:#fff;background:transparent;border-radius:999px;padding:.4em 1em;font-size:.76rem;font-weight:600;}
+ .admin-bar button:hover{background:rgba(255,255,255,.15);}
+ .panel-stats{grid-template-columns:repeat(auto-fit,minmax(140px,1fr));}
+ .panel-stat b{font-family:'Unbounded',sans-serif;font-size:1.5rem;display:block;color:var(--accent);line-height:1.1;}
+ .panel-stat span{font-size:.76rem;color:var(--muted);}
+ .estado{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:.64rem;text-transform:uppercase;letter-spacing:.05em;padding:.3em .7em;border-radius:999px;border:1px solid var(--border);color:var(--ink);}
+ .estado.publicada{background:rgba(31,194,214,.18);border-color:var(--teal);}
+ .estado.borrador{background:var(--surface-2);color:var(--muted);}
+ .admin-row{display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;padding:.85rem 0;border-bottom:1px solid var(--border);}
+ .admin-row:last-child{border-bottom:0;padding-bottom:0;}
+ .admin-row .r-main{display:grid;gap:.3rem;}
+ .admin-row .r-main strong{font-size:.88rem;font-weight:600;}
+ .admin-row .r-meta{font-family:'JetBrains Mono',monospace;font-size:.7rem;color:var(--muted);}
+ .admin-row .r-actions{display:flex;gap:.4rem;align-items:center;flex-wrap:wrap;}
+ .btn-mini{border:1px solid var(--border);background:var(--surface);color:var(--ink);border-radius:999px;padding:.45em 1em;font-size:.75rem;font-weight:600;}
+ .btn-mini:hover{border-color:var(--accent);}
+ .mod-card h4{font-family:'Unbounded',sans-serif;font-size:.85rem;margin-bottom:.35rem;}
+ .aviso-demo{border:1px dashed var(--indigo);background:var(--surface-2);border-radius:14px;padding:.9rem 1.1rem;font-size:.82rem;color:var(--muted);}
+ .aviso-demo b{color:var(--ink);}
+
+ /* ---------- site (inside mockup) ---------- */
  .site-header{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.9rem 1.4rem;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:40;background:var(--paper);box-shadow:0 1px 0 var(--border);}  
  .brand{display:flex;align-items:center;gap:.6rem;font-family:'Unbounded',sans-serif;font-weight:700;font-size:1rem;}  
  .brand-logo{height:44px;width:auto;flex:none;display:block;}
@@ -317,11 +386,9 @@
  <path class="edge" d="M709,108 V150"/>  
  <path class="edge" d="M887,108 V150"/>  
  <path class="edge" d="M1065,108 V150"/>  
- <!-- Sobre children -->  
- <path class="edge" d="M175,194 V210"/>  
- <path class="edge" d="M130,210 H270"/>  
- <path class="edge" d="M130,210 V250"/>  
- <path class="edge" d="M270,210 V250"/>  
+ <!-- Sobre children: apilados en vertical para no chocar con la ficha de expositor -->
+ <path class="edge" d="M175,194 V250"/>
+ <path class="edge" d="M175,288 V298"/>
  <!-- Expositores child -->  
  <path class="edge" d="M353,194 V250"/>  
  <!-- Agenda child -->  
@@ -349,8 +416,8 @@
  <g class="node primary"><rect x="990" y="150" width="150" height="44" rx="10"/><text x="1065" y="177" text-anchor="middle" font-size="13">Contacto</text></g>  
   
  <!-- children -->  
- <g class="node"><rect x="60" y="250" width="140" height="38" rx="9"/><text class="sub" x="130" y="273" text-anchor="middle" font-size="10.5">Quiénes organizan</text></g>  
- <g class="node"><rect x="200" y="250" width="140" height="38" rx="9"/><text class="sub" x="270" y="273" text-anchor="middle" font-size="10.5">Ediciones anteriores</text></g>  
+ <g class="node"><rect x="105" y="250" width="140" height="38" rx="9"/><text class="sub" x="175" y="273" text-anchor="middle" font-size="10.5">Quiénes organizan</text></g>
+ <g class="node"><rect x="105" y="298" width="140" height="38" rx="9"/><text class="sub" x="175" y="321" text-anchor="middle" font-size="10.5">Ediciones anteriores</text></g>
  <g class="node"><rect x="283" y="250" width="140" height="38" rx="9"/><text class="sub" x="353" y="273" text-anchor="middle" font-size="10.5">Ficha de expositor</text></g>  
  <g class="node"><rect x="461" y="250" width="140" height="38" rx="9"/><text class="sub" x="531" y="273" text-anchor="middle" font-size="10.5">Detalle de actividad</text></g>  
  <g class="node"><rect x="639" y="250" width="140" height="38" rx="9"/><text class="sub" x="709" y="273" text-anchor="middle" font-size="10.5">Nota individual</text></g>  
@@ -358,8 +425,11 @@
  <!-- global -->  
  <g class="node global"><rect x="355" y="360" width="150" height="44" rx="10"/><text x="430" y="387" text-anchor="middle" font-size="12.5">Mapa del predio</text></g>  
  <g class="node global"><rect x="545" y="360" width="150" height="44" rx="10"/><text x="620" y="387" text-anchor="middle" font-size="12.5">Preguntas frecuentes</text></g>  
- <g class="node global"><rect x="735" y="360" width="150" height="44" rx="10"/><text x="810" y="387" text-anchor="middle" font-size="12.5">Redes sociales</text></g>  
- </svg>  
+ <g class="node global"><rect x="735" y="360" width="150" height="44" rx="10"/><text x="810" y="387" text-anchor="middle" font-size="12.5">Redes sociales</text></g>
+ <!-- área privada: no cuelga del árbol público -->
+ <text class="band-label" x="1090" y="336" text-anchor="middle">Área privada</text>
+ <g class="node admin"><rect x="965" y="352" width="250" height="60" rx="12"/><text x="1090" y="377" text-anchor="middle" font-size="12.5">Panel de administración</text><text class="sub" x="1090" y="396" text-anchor="middle" font-size="10">acceso restringido · carga de contenidos</text></g>
+ </svg>
  </div>  
   
  <ul class="ia-rationale">  
@@ -368,8 +438,9 @@
  <li><b>Mapa y FAQ, de consulta puntual</b>Se acceden desde el footer global en vez del header, porque no ameritan un ítem de navegación principal. El mapa suma además un acceso directo como botón en el hero de Inicio, por ser la consulta más frecuente durante el evento (ubicarse entre 200+ stands).</li>  
  <li><b>Fichas con URL propia</b>Expositores y Noticias abren en una página individual (no un modal) para permitir compartir el enlace directo e indexación en buscadores.</li>  
  <li><b>Buscador y filtros, no una sección</b>El buscador de expositores y los filtros por rubro viven dentro de la página de Expositores: son una herramienta de una tarea, no contenido propio.</li>  
- <li><b>Escalable a futuro</b>La estructura deja lugar para sumar "Entradas" como página propia si la organización habilita venta o acreditación online.</li>  
- </ul>  
+ <li><b>Escalable a futuro</b>La estructura deja lugar para sumar "Entradas" como página propia si la organización habilita venta o acreditación online.</li>
+ <li><b>Sitio público y área privada</b>El árbol de arriba es lo que ve cualquier visitante, sin registro. Separado de él, con acceso restringido desde el footer, vive el panel donde la Cámara carga y actualiza el contenido: no es una sección más del sitio, es la herramienta que lo mantiene vivo después de la entrega.</li>
+ </ul>
   
  <div class="coverage-wrap">  
  <table class="coverage">  
@@ -385,8 +456,27 @@
  <tr><td>Sponsors</td><td>Página primaria, por niveles de auspicio</td></tr>  
  <tr><td>Contacto</td><td>Página primaria, formulario + datos</td></tr>  
  <tr><td>Preguntas frecuentes</td><td>Footer global</td></tr>  
- <tr><td>Redes sociales</td><td>Footer global + feed embebido en Inicio</td></tr>  
- </tbody>  
+ <tr><td>Redes sociales</td><td>Footer global + feed embebido en Inicio</td></tr>
+ </tbody>
+ </table>
+ </div>
+
+ <div class="coverage-wrap">
+ <table class="coverage">
+ <caption class="eyebrow">Cobertura de las funcionalidades sugeridas (consignas técnicas, punto 6)</caption>
+ <thead><tr><th>Funcionalidad sugerida</th><th>Estado en la propuesta</th></tr></thead>
+ <tbody>
+ <tr><td>Buscador de expositores</td><td>Implementado y funcional — busca por nombre, rubro y número de stand</td></tr>
+ <tr><td>Agenda interactiva</td><td>Implementada — cuatro jornadas con cambio de día sin recargar</td></tr>
+ <tr><td>Mapa del predio</td><td>Implementado — plano de referencia, ubicación real y líneas de colectivo</td></tr>
+ <tr><td>Filtro por rubros</td><td>Implementado — seis rubros, combinable con el buscador</td></tr>
+ <tr><td>Formulario de contacto</td><td>Implementado — con motivo de consulta para derivar internamente</td></tr>
+ <tr><td>Compra o gestión de entradas</td><td>Previsto — botón en el hero y lugar reservado en la navegación; se integra cuando la organización defina la plataforma de venta</td></tr>
+ <tr><td>Panel de novedades</td><td>Implementado — sección pública de Noticias y editor de carga en el panel de administración</td></tr>
+ <tr><td>Integración con redes sociales</td><td>Implementada — feed embebido, franja en el footer y enlaces a las cuentas oficiales</td></tr>
+ <tr><td>Espacios para patrocinadores</td><td>Implementados — tres niveles de auspicio con espacios libres marcados como disponibles</td></tr>
+ <tr><td>Panel para futuras actualizaciones</td><td>Implementado como demostración — panel de administración con módulo de noticias funcional, módulos previstos para el resto del contenido y roles diferenciados</td></tr>
+ </tbody>
  </table>
  </div>
  </div>
@@ -465,8 +555,13 @@
  '<a href="https://www.facebook.com/expojuy/" target="_blank" rel="noopener" aria-label="Facebook de ExpoJuy">'+brandIcon('facebook')+'</a>'+
  '</div>'+
  '<p class="muted mono" style="font-size:.74rem;margin-top:.7rem;">@expojuy</p>'+
- '</div>'+  
- '</div>'+  
+ '</div>'+
+ '<div><h5>Gestión</h5><ul>'+
+ '<li><a href="#" data-nav="acceso">Acceso administración</a></li>'+
+ '</ul>'+
+ '<p class="muted" style="font-size:.72rem;margin-top:.6rem;max-width:24ch;">Panel de carga de contenidos para el equipo de la Cámara.</p>'+
+ '</div>'+
+ '</div>'+
  '<div class="foot-bottom"><span>© 2026 ExpoJuy — Cámara de Comercio Exterior de Jujuy</span><span>Propuesta conceptual · Desafío Digital ExpoJuy 2026</span></div>'+  
  '</footer>';  
  }  
@@ -514,6 +609,21 @@
  {n:'08',nombre:'Expositor ejemplo 08',rubro:'Agroindustria',stand:'A-17'}
  ];
  var expoFiltro={rubro:'Todos',q:''};
+
+ // ---- sesión: visitante (público) o administrador (panel de gestión) ----
+ // En esta demo el rol se cambia en el navegador; en el sitio real es autenticación en el servidor.
+ var session={rol:null};
+
+ // ---- noticias: dato único que alimenta la sección pública y el panel ----
+ var NOTICIAS=[
+ {id:1,cat:'Inscripción',titulo:'Se abrió la inscripción para expositores de ExpoJuy 2026',fecha:'[—/—/2026]',estado:'publicada'},
+ {id:2,cat:'Institucional',titulo:'La Cámara de Comercio Exterior confirma nueva edición del evento',fecha:'[—/—/2026]',estado:'publicada'},
+ {id:3,cat:'Agenda',titulo:'Así será el cronograma de actividades de esta edición',fecha:'[—/—/2026]',estado:'publicada'},
+ {id:4,cat:'Desafío Digital',titulo:'Convocan a jóvenes desarrolladores a diseñar el nuevo sitio oficial',fecha:'[—/—/2026]',estado:'publicada'},
+ {id:5,cat:'Prensa',titulo:'Nota en preparación — ejemplo de borrador, no visible en el sitio público',fecha:'[—/—/2026]',estado:'borrador'}
+ ];
+ var noticiaSeq=5;
+ function noticiasPublicadas(){return NOTICIAS.filter(function(n){return n.estado==='publicada';});}
 
  function expoChip(r){
  var on = expoFiltro.rubro===r;
@@ -627,9 +737,7 @@
  '<div class="section-pad">'+  
  '<div class="section-head"><h2>Últimas noticias</h2><a href="#" class="btn btn-ghost" data-nav="noticias">Ver todas</a></div>'+  
  '<div class="grid cards-3">'+  
- newsCard('Inscripción','Se abrió la inscripción para expositores de ExpoJuy 2026')+  
- newsCard('Convocatoria','La Cámara de Comercio Exterior confirma nueva edición del evento')+  
- newsCard('Agenda','Así será el cronograma de actividades de esta edición')+  
+ noticiasPublicadas().slice(0,3).map(function(n){return newsCard(n.cat,n.titulo,n.fecha);}).join('')+  
  '</div>'+  
  '</div>'+  
  '<div class="cta-band">'+  
@@ -704,11 +812,9 @@
  '<div class="filter-bar"><div class="day-tabs" id="day-tabs">'+tabs+'</div></div>'+  
  '<div class="section-pad"><div class="timeline" id="agenda-timeline">'+agendaDay(days[0])+'</div></div>';  
  },  
- noticias:function(){  
- var cards='';  
- var items=[['Inscripción','Se abrió la inscripción para expositores de ExpoJuy 2026','[—/—/2026]'],['Institucional','La Cámara de Comercio Exterior confirma nueva edición del evento','[—/—/2026]'],['Agenda','Así será el cronograma de actividades de esta edición','[—/—/2026]'],['Desafío Digital','Convocan a jóvenes desarrolladores a diseñar el nuevo sitio oficial','[—/—/2026]']];  
- items.forEach(function(it){cards+=newsCard(it[0],it[1],it[2]);});  
- return ''+  
+ noticias:function(){
+ var cards=noticiasPublicadas().map(function(n){return newsCard(n.cat,n.titulo,n.fecha);}).join('');
+ return ''+
  pageHead('Noticias','Novedades')+  
  '<div class="section-pad">'+  
  '<div class="card" style="display:grid;grid-template-columns:1fr 1fr;gap:1.4rem;align-items:center;margin-bottom:2rem;">'+  
@@ -821,9 +927,95 @@
  '<a href="https://www.facebook.com/expojuy/" target="_blank" rel="noopener" class="btn btn-ghost">'+brandIcon('facebook')+' Facebook · ExpoJuy</a>'+
  '</div>'+
  '<p class="muted" style="font-size:.78rem;margin-top:.8rem;">Las cuentas oficiales que la organización sume (LinkedIn, X, YouTube) se incorporan a este mismo bloque sin rediseñar la sección.</p>'+
- '</div>';  
- }  
- };  
+ '</div>';
+ },
+ acceso:function(){
+ return ''+
+ pageHead('Acceso al sitio','Visitante o administración')+
+ '<div class="section-pad" style="padding-top:0;">'+
+ '<div class="aviso-demo" style="margin-bottom:1.6rem;"><b>Pantalla de demostración.</b> En el sitio real el acceso al panel se resuelve con autenticación del lado del servidor y los permisos se validan en el backend, nunca en el navegador. Acá no se valida ninguna credencial ni se envía ningún dato: el botón entra directo a la demostración del panel.</div>'+
+ '<div class="grid acceso-grid">'+
+ '<div class="card acceso-card">'+
+ tag('Acceso público')+
+ '<h3 style="margin-top:.7rem;">Entrar como visitante</h3>'+
+ '<p class="muted">Es la experiencia por defecto y la que usa el 99% del tráfico: cualquier persona entra sin registrarse y recorre Inicio, Expositores, Agenda, Noticias, Sponsors, Mapa y Contacto. Ningún contenido del evento queda detrás de un login.</p>'+
+ '<a href="#" class="btn btn-primary" data-nav="inicio" style="margin-top:1.1rem;">Ver el sitio</a>'+
+ '</div>'+
+ '<div class="card acceso-card">'+
+ tag('Acceso restringido')+
+ '<h3 style="margin-top:.7rem;">Entrar como administrador</h3>'+
+ '<p class="muted">Acceso del equipo de la Cámara para cargar y actualizar el contenido del sitio —noticias, expositores, agenda, sponsors y datos del evento— sin tocar código ni depender de quien lo desarrolló.</p>'+
+ '<form id="form-login" onsubmit="return false;" style="margin-top:1.1rem;">'+
+ '<div class="field"><label for="f-usuario">Usuario</label><input id="f-usuario" name="f-usuario" type="text" autocomplete="off" placeholder="usuario@ejemplo"></div>'+
+ '<div class="field"><label for="f-clave">Contraseña</label><input id="f-clave" name="f-clave" type="password" autocomplete="off" placeholder="No se valida en esta demostración"></div>'+
+ '<button type="submit" class="btn btn-primary" id="btn-entrar-panel">Entrar al panel</button>'+
+ '</form>'+
+ '</div>'+
+ '</div>'+
+ '</div>';
+ },
+ panel:function(){
+ if(session.rol!=='admin') return SCREENS.acceso();
+ return ''+
+ pageHead('Panel de administración','Gestión de contenidos')+
+ '<div class="section-pad" style="padding-top:0;">'+
+ '<div class="aviso-demo" style="margin-bottom:1.6rem;"><b>Demostración funcional.</b> El editor de noticias de abajo funciona de verdad: lo que publiques aparece en la sección Noticias y en la portada. Los cambios viven en el navegador y se pierden al recargar la página — en el sitio real se guardan en el CMS.</div>'+
+ '<div class="grid panel-stats" id="panel-stats">'+panelStatsCells()+'</div>'+
+ '<div class="section-head" style="margin-top:2.4rem;"><h3 style="font-size:1.05rem;">Noticias</h3><span class="muted mono" style="font-size:.72rem;">Panel de novedades</span></div>'+
+ '<div class="grid contact-grid" style="margin-top:1rem;">'+
+ '<div class="card">'+
+ '<h4 style="font-family:\'Unbounded\',sans-serif;font-size:.9rem;margin-bottom:1rem;">Cargar una noticia</h4>'+
+ '<form id="form-noticia" onsubmit="return false;">'+
+ '<div class="field"><label for="f-n-titulo">Título</label><input id="f-n-titulo" name="f-n-titulo" type="text" placeholder="Título de la noticia"></div>'+
+ '<div class="field"><label for="f-n-cat">Categoría</label><select id="f-n-cat" name="f-n-cat"><option>Institucional</option><option>Inscripción</option><option>Agenda</option><option>Expositores</option><option>Prensa</option></select></div>'+
+ '<div class="field"><label for="f-n-fecha">Fecha de publicación</label><input id="f-n-fecha" name="f-n-fecha" type="date"></div>'+
+ '<div class="field"><label for="f-n-estado">Estado</label><select id="f-n-estado" name="f-n-estado"><option value="publicada">Publicada — visible en el sitio</option><option value="borrador">Borrador — solo visible en el panel</option></select></div>'+
+ '<button type="submit" class="btn btn-primary" id="btn-publicar">Guardar noticia</button>'+
+ '<p class="muted" id="panel-msg" role="status" aria-live="polite" style="font-size:.8rem;margin-top:.8rem;min-height:1.2em;"></p>'+
+ '</form>'+
+ '</div>'+
+ '<div class="card">'+
+ '<h4 style="font-family:\'Unbounded\',sans-serif;font-size:.9rem;margin-bottom:.4rem;">Noticias cargadas</h4>'+
+ '<p class="muted" style="font-size:.78rem;margin-bottom:.6rem;">Los borradores no se muestran en el sitio público hasta que se publican.</p>'+
+ '<div id="panel-noticias">'+panelNoticiasRows()+'</div>'+
+ '</div>'+
+ '</div>'+
+ '<div class="section-head" style="margin-top:2.6rem;"><h3 style="font-size:1.05rem;">Otros módulos gestionables</h3><span class="muted mono" style="font-size:.72rem;">Panel para futuras actualizaciones</span></div>'+
+ '<p class="muted" style="font-size:.85rem;max-width:70ch;margin-bottom:1.2rem;">Todo el contenido del sitio se edita desde acá. En esta demostración solo el módulo de Noticias está implementado; el resto se muestra como está previsto en la propuesta.</p>'+
+ '<div class="grid cards-6">'+
+ modCard('Expositores', EXPOSITORES.length+' cargados', 'Alta, edición y baja del directorio: nombre, rubro, stand, logo y descripción. Alimenta el buscador, el filtro por rubro y la ficha individual.')+
+ modCard('Agenda', Object.keys(AGENDA).length+' días', 'Actividades por jornada: horario, título, lugar y tipo. Alimenta la agenda interactiva y el detalle de cada actividad.')+
+ modCard('Sponsors', '3 niveles', 'Carga de logos por nivel de auspicio y orden de aparición. Los espacios libres quedan como "disponible".')+
+ modCard('Mapa del predio', 'Plano + stands', 'Reemplazo del plano y ubicación de cada stand, para enlazar la ficha del expositor con su lugar en el predio.')+
+ modCard('Preguntas frecuentes', '6 preguntas', 'Alta, edición y reordenamiento de preguntas, sin necesidad de publicar una versión nueva del sitio.')+
+ modCard('Inicio y datos del evento', 'Textos y cifras', 'Titulares del hero, fechas, sede, cifras de la edición y enlaces destacados. Es lo que más cambia en la previa del evento.')+
+ '</div>'+
+ '<div class="grid contact-grid" style="margin-top:2.6rem;align-items:start;">'+
+ '<div class="coverage-wrap">'+
+ '<table class="coverage">'+
+ '<caption class="eyebrow">Roles y permisos previstos</caption>'+
+ '<thead><tr><th>Rol</th><th>Qué puede hacer</th></tr></thead>'+
+ '<tbody>'+
+ '<tr><td>Administrador</td><td>Todo el contenido, más alta de usuarios y asignación de roles</td></tr>'+
+ '<tr><td>Editor de contenidos</td><td>Expositores, agenda, sponsors, FAQ, mapa e Inicio</td></tr>'+
+ '<tr><td>Prensa</td><td>Solo noticias: crear, editar, publicar y despublicar</td></tr>'+
+ '<tr><td>Consulta</td><td>Solo lectura del panel y de las métricas del sitio</td></tr>'+
+ '</tbody>'+
+ '</table>'+
+ '</div>'+
+ '<div class="card">'+
+ '<h4 style="font-family:\'Unbounded\',sans-serif;font-size:.9rem;margin-bottom:.7rem;">Cómo se sostiene en el tiempo</h4>'+
+ '<ul class="info-list" style="margin-top:0;">'+
+ '<li>'+icon('newspaper')+'<div><b>Contenido separado del código</b>La Cámara actualiza el sitio sin intervención técnica ni un nuevo despliegue.</div></li>'+
+ '<li>'+icon('search')+'<div><b>Vista previa antes de publicar</b>Todo cambio se revisa como borrador antes de quedar visible.</div></li>'+
+ '<li>'+icon('clock')+'<div><b>Historial de cambios</b>Registro de qué se modificó, cuándo y qué usuario lo hizo, con opción de volver atrás.</div></li>'+
+ '<li>'+icon('pin')+'<div><b>Permisos por área</b>Cada equipo edita solo su módulo, lo que reduce el riesgo de errores en el sitio en vivo.</div></li>'+
+ '</ul>'+
+ '</div>'+
+ '</div>'+
+ '</div>';
+ }
+ };
   
  function pageHead(title,eyebrow){  
  return '<div class="section-pad" style="padding-bottom:1.2rem;"><span class="eyebrow">'+eyebrow+'</span><h2 style="font-size:clamp(1.5rem,3vw,2.1rem);margin-top:.4rem;">'+title+'</h2></div>';  
@@ -837,9 +1029,9 @@
  function orgCard(name,desc){  
  return '<div class="card org-card"><h4>'+name+'</h4><p class="muted" style="font-size:.83rem;">'+desc+'</p></div>';  
  }  
- function newsCard(cat,title,date){  
- return '<div class="card news-card"><div class="news-thumb"></div>'+tag(cat)+'<h4 style="font-family:\'Unbounded\',sans-serif;font-size:.9rem;">'+title+'</h4><p class="muted mono" style="font-size:.72rem;">'+(date||'[—/—/2026]')+'</p></div>';
- }  
+ function newsCard(cat,title,date){
+ return '<div class="card news-card"><div class="news-thumb"></div>'+tag(escapeHtml(cat))+'<h4 style="font-family:\'Unbounded\',sans-serif;font-size:.9rem;">'+escapeHtml(title)+'</h4><p class="muted mono" style="font-size:.72rem;">'+escapeHtml(date||'[—/—/2026]')+'</p></div>';
+ }
  function tlItem(time,title,place,typeTag){  
  return '<div class="tl-item"><time>'+time+'</time><div>'+typeTag+'<h4 style="margin-top:.4rem;font-family:\'Unbounded\',sans-serif;font-size:.92rem;">'+title+'</h4><p class="muted" style="font-size:.8rem;margin-top:.2rem;">'+icon('pin')+' '+place+'</p></div></div>';  
  }  
@@ -847,7 +1039,58 @@
  var id='f-'+label.toLowerCase().replace(/[^a-z0-9]+/g,'-');
  return '<div class="field"><label for="'+id+'">'+label+'</label><input id="'+id+'" name="'+id+'" type="'+type+'" placeholder="'+placeholder+'"></div>';
  }
- function mapaSvg(){  
+ function modCard(titulo,meta,desc){
+ return '<div class="card mod-card"><h4>'+titulo+'</h4>'+tag(meta)+'<p class="muted" style="font-size:.83rem;margin-top:.6rem;">'+desc+'</p></div>';
+ }
+ function panelStatsCells(){
+ var pub=noticiasPublicadas().length;
+ var acts=Object.keys(AGENDA).reduce(function(t,d){return t+AGENDA[d].length;},0);
+ return ''+
+ '<div class="card panel-stat"><b>'+pub+'</b><span>noticias publicadas</span></div>'+
+ '<div class="card panel-stat"><b>'+(NOTICIAS.length-pub)+'</b><span>borradores</span></div>'+
+ '<div class="card panel-stat"><b>'+EXPOSITORES.length+'</b><span>expositores cargados</span></div>'+
+ '<div class="card panel-stat"><b>'+acts+'</b><span>actividades en agenda</span></div>';
+ }
+ function panelNoticiasRows(){
+ return NOTICIAS.map(function(n){
+ var alt = n.estado==='publicada' ? 'Despublicar' : 'Publicar';
+ return '<div class="admin-row">'+
+ '<div class="r-main"><strong>'+escapeHtml(n.titulo)+'</strong><span class="r-meta">'+n.cat+' · '+n.fecha+'</span></div>'+
+ '<div class="r-actions"><span class="estado '+n.estado+'">'+n.estado+'</span>'+
+ '<button type="button" class="btn-mini" data-noti="'+n.id+'">'+alt+'</button></div>'+
+ '</div>';
+ }).join('');
+ }
+ function refreshPanel(msg){
+ var l=document.getElementById('panel-noticias');
+ if(l) l.innerHTML=panelNoticiasRows();
+ var s=document.getElementById('panel-stats');
+ if(s) s.innerHTML=panelStatsCells();
+ var m=document.getElementById('panel-msg');
+ if(m && msg) m.textContent=msg;
+ }
+ function escapeHtml(s){
+ return String(s).replace(/[&<>"']/g,function(c){
+ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];
+ });
+ }
+ function fechaLegible(v){
+ if(!v) return '[—/—/2026]';
+ var p=v.split('-');
+ return p.length===3 ? p[2]+'/'+p[1]+'/'+p[0] : v;
+ }
+ function adminBar(){
+ if(session.rol!=='admin') return '';
+ return '<div class="admin-bar">'+
+ '<span class="who"><span class="dot-live"></span>Modo administrador · demostración</span>'+
+ '<span class="admin-actions">'+
+ '<button type="button" data-nav="panel">Ir al panel</button>'+
+ '<button type="button" data-nav="inicio">Ver el sitio como visitante</button>'+
+ '<button type="button" id="btn-salir">Salir</button>'+
+ '</span>'+
+ '</div>';
+ }
+ function mapaSvg(){
  return '<svg viewBox="0 0 400 300" role="img" aria-label="Plano ilustrativo del predio" style="width:100%;height:auto;">'+  
  '<rect x="20" y="20" width="160" height="110" rx="10" fill="var(--purple)" opacity=".85"/><text x="100" y="80" text-anchor="middle" fill="#fff" font-size="13" font-family="Unbounded, sans-serif">A</text>'+  
  '<rect x="200" y="20" width="160" height="110" rx="10" fill="var(--indigo)" opacity=".85"/><text x="280" y="80" text-anchor="middle" fill="#fff" font-size="13" font-family="Unbounded, sans-serif">B</text>'+  
@@ -908,7 +1151,7 @@
  function render(id){
  if(id!=='expositores'){ expoFiltro.rubro='Todos'; expoFiltro.q=''; }
  current=id;
- rootEl.innerHTML=siteHeader(id)+'<main id="contenido">'+SCREENS[id]()+'</main>'+siteFooter();
+ rootEl.innerHTML=adminBar()+siteHeader(id)+'<main id="contenido">'+SCREENS[id]()+'</main>'+siteFooter();
  autoReveal(rootEl);
  initTheme();
  window.scrollTo({top:0,behavior:'auto'});
@@ -942,7 +1185,7 @@
  '</div>'+
  '</div>'+
  '</div>';
- rootEl.innerHTML=siteHeader('expositores')+'<main id="contenido">'+ficha+'</main>'+siteFooter();
+ rootEl.innerHTML=adminBar()+siteHeader('expositores')+'<main id="contenido">'+ficha+'</main>'+siteFooter();
  autoReveal(rootEl);
  initTheme();
  window.scrollTo({top:0,behavior:'auto'});
@@ -969,6 +1212,49 @@
  var id=navBtn.getAttribute('data-nav');
  if(id==='arquitectura'){showArquitectura();return;}
  render(id);
+ return;
+ }
+ var entrarBtn=e.target.closest('#btn-entrar-panel');
+ if(entrarBtn){
+ session.rol='admin';
+ render('panel');
+ return;
+ }
+ var salirBtn=e.target.closest('#btn-salir');
+ if(salirBtn){
+ session.rol=null;
+ render('inicio');
+ return;
+ }
+ var publicarBtn=e.target.closest('#btn-publicar');
+ if(publicarBtn){
+ var campoTitulo=document.getElementById('f-n-titulo');
+ var titulo=(campoTitulo && campoTitulo.value || '').trim();
+ if(!titulo){
+ refreshPanel('Escribí un título para poder guardar la noticia.');
+ if(campoTitulo) campoTitulo.focus();
+ return;
+ }
+ var estado=document.getElementById('f-n-estado').value;
+ NOTICIAS.unshift({
+ id:++noticiaSeq,
+ cat:document.getElementById('f-n-cat').value,
+ titulo:titulo,
+ fecha:fechaLegible(document.getElementById('f-n-fecha').value),
+ estado:estado
+ });
+ campoTitulo.value='';
+ refreshPanel('Listo: "'+titulo+'" se guardó como '+estado+'.');
+ return;
+ }
+ var notiBtn=e.target.closest('[data-noti]');
+ if(notiBtn){
+ var nid=parseInt(notiBtn.getAttribute('data-noti'),10);
+ NOTICIAS.forEach(function(n){
+ if(n.id===nid) n.estado = n.estado==='publicada' ? 'borrador' : 'publicada';
+ });
+ var cambiada=NOTICIAS.filter(function(n){return n.id===nid;})[0];
+ refreshPanel(cambiada ? 'La noticia pasó a '+cambiada.estado+'.' : '');
  return;
  }
  var themeBtn=e.target.closest('#theme-toggle');
