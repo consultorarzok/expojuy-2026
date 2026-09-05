@@ -40,7 +40,9 @@
  img{max-width:100%;display:block;}  
  button{font-family:inherit;cursor:pointer;}  
  a{color:inherit;}  
- :focus-visible{outline:2px solid var(--indigo);outline-offset:2px;border-radius:4px;}  
+ :focus-visible{outline:2px solid var(--indigo);outline-offset:2px;border-radius:4px;}
+ .skip-link{position:absolute;left:-9999px;top:0;z-index:100;background:var(--purple);color:#fff;padding:.7rem 1.2rem;border-radius:0 0 10px 0;font-size:.85rem;font-weight:600;text-decoration:none;}
+ .skip-link:focus{left:0;}  
  @media (prefers-reduced-motion: reduce){ *{animation:none!important;transition:none!important;scroll-behavior:auto!important;} }
 
  /* ---------- load-in / scroll-reveal animations ---------- */
@@ -215,10 +217,18 @@
  .social-row a{width:34px;height:34px;border-radius:50%;background:var(--surface);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:.85rem;text-decoration:none;}  
   
  /* filters / forms */  
- .filter-bar{display:flex;flex-wrap:wrap;gap:.6rem;padding:1.2rem clamp(1.2rem,5vw,3rem) 0;}  
- .filter-bar .chip{background:var(--surface-2);border:1px solid var(--border);border-radius:999px;padding:.4rem .9rem;font-size:.78rem;font-weight:600;color:var(--muted);}  
- .filter-bar .chip[data-on="true"]{background:var(--purple);border-color:var(--purple);color:#fff;}  
- .search-mock{display:flex;align-items:center;gap:.5rem;background:var(--surface);border:1px solid var(--border);border-radius:999px;padding:.5rem 1rem;font-size:.82rem;color:var(--muted);flex:1;min-width:180px;}  
+ .filter-bar{display:flex;flex-wrap:wrap;gap:.6rem;padding:1.2rem clamp(1.2rem,5vw,3rem) 0;align-items:center;}
+ .filter-bar .chip{background:var(--surface-2);border:1px solid var(--border);border-radius:999px;padding:.45rem .95rem;font-size:.78rem;font-weight:600;color:var(--muted);cursor:pointer;transition:background .15s ease,color .15s ease,border-color .15s ease;font-family:inherit;}
+ .filter-bar .chip:hover{border-color:var(--purple);color:var(--ink);}
+ .filter-bar .chip[aria-pressed="true"]{background:var(--purple);border-color:var(--purple);color:#fff;}
+ .search-box{display:flex;align-items:center;gap:.5rem;background:var(--surface);border:1px solid var(--border);border-radius:999px;padding:.5rem 1rem;font-size:.82rem;color:var(--muted);flex:1;min-width:220px;}
+ .search-box:focus-within{border-color:var(--purple);}
+ .search-box input{flex:1;border:none;background:transparent;color:var(--ink);font-family:inherit;font-size:.85rem;outline:none;min-width:0;}
+ .search-box input::placeholder{color:var(--muted);}
+ .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;}
+ .ficha-grid{grid-template-columns:.9fr 1.1fr;gap:2rem;align-items:start;}
+ @media (max-width:760px){ .ficha-grid{grid-template-columns:1fr;} }
+ .ficha-foto{width:100%;aspect-ratio:1;border-radius:16px;background-size:cover;background-position:center top;box-shadow:var(--shadow);}
   
  .expo-card{display:grid;gap:.6rem;}  
  .expo-thumb{width:72px;height:72px;border-radius:50%;background-size:cover;background-position:center top;flex:none;}
@@ -277,6 +287,7 @@
 <body>  
   
   
+<a class="skip-link" href="#contenido">Saltar al contenido</a>
 <div class="tech-bg" aria-hidden="true"></div>
 <div id="screen-root"></div>
 
@@ -401,7 +412,6 @@
  var ALL=NAV_PRIMARY.concat(NAV_SECONDARY);  
   
  function tag(t){return '<span class="tag">'+t+'</span>';}  
- function chip(t,on){return '<span class="chip" data-on="'+(on?'true':'false')+'">'+t+'</span>';}  
   
  var ICONS={  
  pin:'<circle cx="12" cy="10" r="3"/><path d="M12 21c4-4.5 7-8 7-11a7 7 0 1 0-14 0c0 3 3 6.5 7 11Z"/>',  
@@ -422,11 +432,11 @@
  return ''+  
  '<header class="site-header">'+  
  '<a href="#" class="brand" data-nav="inicio"><img class="brand-logo brand-logo-light" src="images/expojuy-brand.png" alt="ExpoJuy 2026"><img class="brand-logo brand-logo-dark" src="images/expojuy-brand-dark.png" alt="ExpoJuy 2026"></a>'+
- '<div class="site-nav">'+
+ '<nav class="site-nav" aria-label="Navegación principal">'+
  '<ul id="site-nav-list">'+links+'</ul>'+
  '<button type="button" class="theme-toggle" id="theme-toggle" role="switch" aria-checked="false" title="Modo claro / oscuro" aria-label="Cambiar entre modo claro y modo oscuro"><span class="track"></span><span class="knob"></span></button>'+
  '<button type="button" class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-label="Abrir menú" title="Menú"><span></span></button>'+
- '</div>'+
+ '</nav>'+
  '</header>';  
  }  
   
@@ -489,6 +499,59 @@
  return (AGENDA[d]||[]).map(function(it){return tlItem(it[0],it[1],it[2],tag(it[3]));}).join('');  
  }  
   
+ // ---- expositores: datos, filtro y buscador ----
+ var EXPO_RUBROS=['Todos','Economía del Conocimiento','Minería','Agroindustria','Turismo','Energía','Comercio Exterior'];
+ var EXPOSITORES=[
+ {n:'01',nombre:'Expositor ejemplo 01',rubro:'Economía del Conocimiento',stand:'A-10'},
+ {n:'02',nombre:'Expositor ejemplo 02',rubro:'Minería',stand:'A-11'},
+ {n:'03',nombre:'Expositor ejemplo 03',rubro:'Agroindustria',stand:'A-12'},
+ {n:'04',nombre:'Expositor ejemplo 04',rubro:'Turismo',stand:'A-13'},
+ {n:'05',nombre:'Expositor ejemplo 05',rubro:'Energía',stand:'A-14'},
+ {n:'06',nombre:'Expositor ejemplo 06',rubro:'Comercio Exterior',stand:'A-15'},
+ {n:'07',nombre:'Expositor ejemplo 07',rubro:'Economía del Conocimiento',stand:'A-16'},
+ {n:'08',nombre:'Expositor ejemplo 08',rubro:'Agroindustria',stand:'A-17'}
+ ];
+ var expoFiltro={rubro:'Todos',q:''};
+
+ function expoChip(r){
+ var on = expoFiltro.rubro===r;
+ return '<button type="button" class="chip" data-rubro="'+r+'" aria-pressed="'+(on?'true':'false')+'">'+r+'</button>';
+ }
+ function expoMatch(e){
+ var q=expoFiltro.q.trim().toLowerCase();
+ var okRubro = expoFiltro.rubro==='Todos' || e.rubro===expoFiltro.rubro;
+ var okQ = !q || (e.nombre+' '+e.rubro+' '+e.stand).toLowerCase().indexOf(q)>=0;
+ return okRubro && okQ;
+ }
+ function expoCards(){
+ var list=EXPOSITORES.filter(expoMatch);
+ if(!list.length){
+ return '<p class="muted" style="grid-column:1/-1;padding:1.4rem 0;">Ningún expositor coincide con la búsqueda. Probá con otro rubro o término.</p>';
+ }
+ return list.map(function(e){
+ return '<div class="card expo-card">'+
+ '<div class="expo-thumb" style="background-image:url(\'images/expositor-'+e.n+'.jpg\');"></div>'+
+ '<h4 style="font-family:\'Unbounded\',sans-serif;font-size:.92rem;">'+e.nombre+'</h4>'+
+ tag(e.rubro)+
+ '<p class="muted" style="font-size:.8rem;">Stand '+e.stand+'</p>'+
+ '<button type="button" class="btn btn-ghost" style="font-size:.78rem;padding:.5em .9em;" data-expo="'+e.n+'">Ver ficha</button>'+
+ '</div>';
+ }).join('');
+ }
+ function expoCountText(){
+ var total=EXPOSITORES.length, n=EXPOSITORES.filter(expoMatch).length;
+ return n===total ? (total+' expositores') : (n+' de '+total+' expositores');
+ }
+ function refreshExpositores(){
+ var grid=document.getElementById('expo-grid');
+ if(grid) grid.innerHTML=expoCards();
+ var count=document.getElementById('expo-count');
+ if(count) count.textContent=expoCountText();
+ document.querySelectorAll('[data-rubro]').forEach(function(b){
+ b.setAttribute('aria-pressed', b.getAttribute('data-rubro')===expoFiltro.rubro ? 'true':'false');
+ });
+ }
+
  var SCREENS={  
  inicio:function(){  
  return ''+  
@@ -615,26 +678,22 @@
  '</div>'+
  '</div>';
  },  
- expositores:function(){  
- var cards='';
- var rubros=['Economía del Conocimiento','Minería','Agroindustria','Turismo','Energía','Comercio Exterior','Economía del Conocimiento','Agroindustria'];
- for(var i=0;i<8;i++){
- var n=(i+1<10?'0'+(i+1):i+1);
- cards+='<div class="card expo-card"><div class="expo-thumb" style="background-image:url(\'images/expositor-'+n+'.jpg\');"></div><h4 style="font-family:\'Unbounded\',sans-serif;font-size:.92rem;">Expositor ejemplo '+n+'</h4>'+tag(rubros[i])+'<p class="muted" style="font-size:.8rem;">Stand [A-'+(i+10)+']</p><a href="#" class="btn btn-ghost" style="font-size:.78rem;padding:.5em .9em;">Ver ficha</a></div>';
- }
- return ''+  
- pageHead('Expositores','Directorio')+  
- '<div class="filter-bar">'+  
- '<div class="search-mock">'+icon('search')+' Buscar expositor por nombre o rubro…</div>'+  
- chip('Todos',true)+chip('Economía del Conocimiento',false)+chip('Minería',false)+chip('Agroindustria',false)+chip('Turismo',false)+chip('Energía',false)+chip('Comercio Exterior',false)+  
- '</div>'+  
- '<div class="section-pad">'+  
- '<div class="grid cards-6">'+cards+'</div>'+  
- '<div style="display:flex;justify-content:center;gap:.4rem;margin-top:1.6rem;">'+  
- '<span class="tag">‹ Anterior</span><span class="tag" style="background:var(--purple);color:#fff;border-color:var(--purple);">1</span><span class="tag">2</span><span class="tag">3</span><span class="tag">Siguiente ›</span>'+  
- '</div>'+  
- '</div>';  
- },  
+ expositores:function(){
+ return ''+
+ pageHead('Expositores','Directorio')+
+ '<div class="filter-bar">'+
+ '<div class="search-box">'+
+ '<label for="expo-search" class="sr-only">Buscar expositor por nombre, rubro o stand</label>'+
+ icon('search')+
+ '<input id="expo-search" type="search" autocomplete="off" placeholder="Buscar por nombre, rubro o stand..." value="'+expoFiltro.q.replace(/"/g,'&quot;')+'">'+
+ '</div>'+
+ EXPO_RUBROS.map(expoChip).join('')+
+ '</div>'+
+ '<div class="section-pad">'+
+ '<p class="muted mono" id="expo-count" aria-live="polite" style="font-size:.76rem;margin-bottom:1rem;">'+expoCountText()+'</p>'+
+ '<div class="grid cards-6" id="expo-grid">'+expoCards()+'</div>'+
+ '</div>';
+ },
  agenda:function(){  
  var days=Object.keys(AGENDA);  
  var tabs=days.map(function(d,i){return '<button type="button" data-day="'+d+'" aria-pressed="'+(i===0)+'">'+d+'</button>';}).join('');  
@@ -681,8 +740,8 @@
  '<form class="card" onsubmit="return false;">'+  
  field('Nombre y apellido','input','text','Tu nombre')+  
  field('Email','input','email','tu@email.com')+  
- '<div class="field"><label>Motivo</label><select><option>Quiero exhibir</option><option>Quiero ser sponsor</option><option>Prensa</option><option>Consulta general</option></select></div>'+  
- '<div class="field"><label>Mensaje</label><textarea rows="4" placeholder="Contanos brevemente tu consulta"></textarea></div>'+  
+ '<div class="field"><label for="f-motivo">Motivo</label><select id="f-motivo" name="f-motivo"><option>Quiero exhibir</option><option>Quiero ser sponsor</option><option>Prensa</option><option>Consulta general</option></select></div>'+  
+ '<div class="field"><label for="f-mensaje">Mensaje</label><textarea id="f-mensaje" name="f-mensaje" rows="4" placeholder="Contanos brevemente tu consulta"></textarea></div>'+  
  '<button type="submit" class="btn btn-primary">Enviar mensaje</button>'+  
  '</form>'+  
  '<div class="card">'+  
@@ -773,9 +832,10 @@
  function tlItem(time,title,place,typeTag){  
  return '<div class="tl-item"><time>'+time+'</time><div>'+typeTag+'<h4 style="margin-top:.4rem;font-family:\'Unbounded\',sans-serif;font-size:.92rem;">'+title+'</h4><p class="muted" style="font-size:.8rem;margin-top:.2rem;">'+icon('pin')+' '+place+'</p></div></div>';  
  }  
- function field(label,tagName,type,placeholder){  
- return '<div class="field"><label>'+label+'</label><input type="'+type+'" placeholder="'+placeholder+'"></div>';  
- }  
+ function field(label,tagName,type,placeholder){
+ var id='f-'+label.toLowerCase().replace(/[^a-z0-9]+/g,'-');
+ return '<div class="field"><label for="'+id+'">'+label+'</label><input id="'+id+'" name="'+id+'" type="'+type+'" placeholder="'+placeholder+'"></div>';
+ }
  function mapaSvg(){  
  return '<svg viewBox="0 0 400 300" role="img" aria-label="Plano ilustrativo del predio" style="width:100%;height:auto;">'+  
  '<rect x="20" y="20" width="160" height="110" rx="10" fill="var(--purple)" opacity=".85"/><text x="100" y="80" text-anchor="middle" fill="#fff" font-size="13" font-family="Unbounded, sans-serif">A</text>'+  
@@ -802,11 +862,12 @@
 
 
  // ---- scroll reveal ----
- var revealObserver=new IntersectionObserver(function(entries){
+ var supportsIO = typeof IntersectionObserver === 'function';
+ var revealObserver = supportsIO ? new IntersectionObserver(function(entries){
  entries.forEach(function(entry){
  if(entry.isIntersecting) entry.target.classList.add('active');
  });
- },{threshold:.15,rootMargin:'0px 0px -50px 0px'});
+ },{threshold:.15,rootMargin:'0px 0px -50px 0px'}) : null;
  var REVEAL_GROUPS=[
  {sel:'.section-head',cls:'reveal'},
  {sel:'.stat',cls:'reveal-scale'},
@@ -818,6 +879,7 @@
  {sel:'.diagram-wrap,.coverage-wrap',cls:'reveal'}
  ];
  function autoReveal(container){
+ if(!container || !supportsIO) return; // sin IntersectionObserver el contenido queda visible, sin animación
  REVEAL_GROUPS.forEach(function(g){
  container.querySelectorAll(g.sel).forEach(function(el,i){
  if(el.classList.contains('reveal')||el.classList.contains('reveal-left')||el.classList.contains('reveal-right')||el.classList.contains('reveal-scale')) return;
@@ -833,8 +895,43 @@
  var current='inicio';
 
  function render(id){
+ if(id!=='expositores'){ expoFiltro.rubro='Todos'; expoFiltro.q=''; }
  current=id;
- rootEl.innerHTML=siteHeader(id)+SCREENS[id]()+siteFooter();
+ rootEl.innerHTML=siteHeader(id)+'<main id="contenido">'+SCREENS[id]()+'</main>'+siteFooter();
+ autoReveal(rootEl);
+ initTheme();
+ window.scrollTo({top:0,behavior:'auto'});
+ }
+
+ // Ficha individual de expositor — demuestra el nivel de detalle de la arquitectura de información
+ function renderFichaExpositor(n){
+ var e=EXPOSITORES.filter(function(x){return x.n===n;})[0];
+ if(!e){ render('expositores'); return; }
+ current='expositores';
+ var ficha=''+
+ '<div class="section-pad" style="padding-bottom:1.2rem;">'+
+ '<button type="button" class="btn btn-ghost" data-nav="expositores" style="font-size:.8rem;margin-bottom:1.2rem;">← Volver a Expositores</button>'+
+ '<div class="grid ficha-grid">'+
+ '<div>'+
+ '<div class="ficha-foto" style="background-image:url(\'images/expositor-'+e.n+'.jpg\');"></div>'+
+ '</div>'+
+ '<div>'+
+ '<span class="eyebrow">Ficha de expositor</span>'+
+ '<h2 style="font-size:clamp(1.4rem,3vw,2rem);margin:.4rem 0 .8rem;">'+e.nombre+'</h2>'+
+ '<div style="display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1rem;">'+tag(e.rubro)+tag(icon('pin')+' Stand '+e.stand)+'</div>'+
+ '<p class="muted" style="max-width:56ch;">Espacio reservado para la descripción institucional del expositor: actividad principal, productos o servicios que presenta en ExpoJuy 2026 y datos de contacto comercial. Este contenido lo carga la organización desde el panel de administración.</p>'+
+ '<div class="grid cards-2" style="margin-top:1.4rem;">'+
+ '<div class="card"><b style="font-size:.8rem;">Rubro</b><p class="muted" style="font-size:.85rem;margin-top:.3rem;">'+e.rubro+'</p></div>'+
+ '<div class="card"><b style="font-size:.8rem;">Ubicación en el predio</b><p class="muted" style="font-size:.85rem;margin-top:.3rem;">Stand '+e.stand+' · <a href="#" data-nav="mapa">ver en el mapa</a></p></div>'+
+ '</div>'+
+ '<div style="margin-top:1.4rem;display:flex;gap:.6rem;flex-wrap:wrap;">'+
+ '<a href="#" class="btn btn-primary" data-nav="contacto" style="font-size:.85rem;">Contactar al expositor</a>'+
+ '<a href="#" class="btn btn-ghost" data-nav="expositores" style="font-size:.85rem;">Ver otros expositores</a>'+
+ '</div>'+
+ '</div>'+
+ '</div>'+
+ '</div>';
+ rootEl.innerHTML=siteHeader('expositores')+'<main id="contenido">'+ficha+'</main>'+siteFooter();
  autoReveal(rootEl);
  initTheme();
  window.scrollTo({top:0,behavior:'auto'});
@@ -882,6 +979,24 @@
  var tl=document.getElementById('agenda-timeline');
  if(tl){ tl.innerHTML=agendaDay(dayBtn.getAttribute('data-day')); autoReveal(tl); }
  return;
+ }
+ var rubroBtn=e.target.closest('[data-rubro]');
+ if(rubroBtn){
+ expoFiltro.rubro=rubroBtn.getAttribute('data-rubro');
+ refreshExpositores();
+ return;
+ }
+ var expoBtn=e.target.closest('[data-expo]');
+ if(expoBtn){
+ renderFichaExpositor(expoBtn.getAttribute('data-expo'));
+ return;
+ }
+ });
+
+ document.addEventListener('input',function(e){
+ if(e.target && e.target.id==='expo-search'){
+ expoFiltro.q=e.target.value;
+ refreshExpositores();
  }
  });
 
