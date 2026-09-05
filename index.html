@@ -459,28 +459,32 @@
  '</footer>';  
  }  
   
- var AGENDA={  
- 'Día 1':[  
- ['09:00','Acreditación y apertura oficial','Hall principal','Apertura'],  
- ['10:00','Panel: Economía del Conocimiento en el Norte Argentino','Pabellón A','Conferencia'],  
- ['12:00','Rueda de negocios internacional','Pabellón B','Rueda de negocios'],  
- ['15:00','Capacitación: exportar desde Jujuy','Sala de capacitación','Capacitación'],  
- ['18:00','Networking y cierre de jornada','Espacio central','Networking']  
- ],  
- 'Día 2':[  
- ['09:30','Apertura de jornada','Hall principal','Apertura'],  
- ['11:00','Panel: Minería y cadena de proveedores','Pabellón A','Conferencia'],  
- ['13:00','Rondas de negocios por rubro','Pabellón B','Rueda de negocios'],  
- ['16:00','Capacitación: financiamiento para pymes','Sala de capacitación','Capacitación'],  
- ['19:00','Networking y cierre de jornada','Espacio central','Networking']  
- ],  
- 'Día 3':[  
- ['09:30','Panel: Turismo y economía regional','Pabellón C','Conferencia'],  
- ['11:30','Presentación de proyectos de Economía del Conocimiento','Pabellón A','Conferencia'],  
- ['14:00','Cierre institucional y balance de la edición','Hall principal','Cierre'],  
- ['16:00','Networking final','Espacio central','Networking']  
- ]  
- };  
+ var AGENDA={
+ 'Día 1 · 9 oct':[
+ ['09:00','Acreditación y apertura oficial','Hall principal','Apertura'],
+ ['10:00','Rondas de negocios — Corredor Bioceánico (delegaciones AR, BR, CL, PY)','Pabellón B','Rueda de negocios'],
+ ['16:00','Apertura de la exposición de stands','Ciudad Cultural','Exposición'],
+ ['19:00','Networking de bienvenida','Espacio central','Networking']
+ ],
+ 'Día 2 · 10 oct':[
+ ['09:30','Rondas de negocios internacionales','Pabellón B','Rueda de negocios'],
+ ['11:30','Panel: Minería, litio y cadena de proveedores','Pabellón A','Conferencia'],
+ ['16:00','Exposición de stands','Ciudad Cultural','Exposición'],
+ ['19:30','Networking y cierre de jornada','Espacio central','Networking']
+ ],
+ 'Día 3 · 11 oct':[
+ ['09:30','Rondas de negocios internacionales','Pabellón B','Rueda de negocios'],
+ ['11:30','Panel: Economía del Conocimiento en el Norte Argentino','Pabellón A','Conferencia'],
+ ['16:00','Exposición de stands','Ciudad Cultural','Exposición'],
+ ['20:00','Espectáculo nocturno','Escenario central','Espectáculo']
+ ],
+ 'Día 4 · 12 oct':[
+ ['10:00','Panel: Turismo y economía regional','Pabellón A','Conferencia'],
+ ['14:00','Última jornada de exposición de stands','Ciudad Cultural','Exposición'],
+ ['17:00','Cierre institucional y balance de la edición','Hall principal','Cierre'],
+ ['18:30','Networking final','Espacio central','Networking']
+ ]
+ };
  function agendaDay(d){  
  return (AGENDA[d]||[]).map(function(it){return tlItem(it[0],it[1],it[2],tag(it[3]));}).join('');  
  }  
@@ -492,7 +496,7 @@
  '<div class="hero-inner">'+  
  '<span class="eyebrow">San Salvador de Jujuy · 9 al 12 de octubre 2026 · 17ª edición</span>'+
  '<h1>Conectando países.<br>Creando oportunidades.</h1>'+  
- '<p class="lead">ExpoJuy 2026 reúne a empresas, organismos públicos y profesionales del Norte Argentino en la plataforma de negocios, innovación y economía del conocimiento más importante de la provincia.</p>'+  
+ '<p class="lead">ExpoJuy 2026 reúne a empresas, organismos públicos y profesionales del Norte Argentino en la plataforma de negocios, innovación y economía del conocimiento más importante de la provincia. Con delegaciones de Argentina, Brasil, Chile y Paraguay, en su 17ª edición.</p>'+  
  '<div class="hero-ctas"><a href="#" class="btn btn-light" title="Plataforma de venta de entradas — se integrará una vez definida por la organización">'+icon('ticket')+' Entradas</a><a href="#" class="btn btn-ghost" style="border-color:rgba(255,255,255,.5);color:#fff;" data-nav="expositores">Ver expositores</a><a href="#" class="btn btn-ghost" style="border-color:rgba(255,255,255,.5);color:#fff;" data-nav="agenda">Ver agenda</a></div>'+  
  '<div class="hero-meta">'+tag(icon('pin')+' Ciudad Cultural, San Salvador de Jujuy')+tag(icon('calendar')+' 9 al 12 de octubre 2026')+tag(icon('ticket')+' Entrada con costo*')+'</div>'+
  '<p class="hero-footnote">*Valor de la entrada a confirmar por la organización.</p>'+
@@ -507,10 +511,10 @@
  '<div class="section-pad">'+
  '<span class="eyebrow">Proyección de la edición</span>'+
  '<div class="grid stat-grid" style="margin-top:1rem;">'+  
- '<div class="card stat"><b>+120</b><span>expositores esperados</span></div>'+  
- '<div class="card stat"><b>6</b><span>rubros productivos</span></div>'+  
- '<div class="card stat"><b>3</b><span>días de agenda</span></div>'+  
- '<div class="card stat"><b>+30</b><span>actividades</span></div>'+  
+ '<div class="card stat"><b>+200</b><span>stands esperados</span></div>'+
+ '<div class="card stat"><b>4</b><span>países con delegaciones</span></div>'+
+ '<div class="card stat"><b>4</b><span>días de agenda</span></div>'+
+ '<div class="card stat"><b>+30</b><span>actividades</span></div>'+
  '</div>'+  
  '</div>'+  
  '<div class="section-pad" style="padding-top:0;">'+  
