@@ -7,6 +7,11 @@
 <meta name="description" content="ExpoJuy 2026: 17ª edición de la exposición productiva del Norte Argentino. Del 9 al 12 de octubre de 2026 en la Ciudad Cultural de San Salvador de Jujuy, con delegaciones de Argentina, Brasil, Chile y Paraguay.">
 <link rel="icon" href="images/expojuy-icon.png">
 
+<!-- PWA: agenda, mapa y expositores usables sin señal (Ciudad Cultural, 200+ stands) -->
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#7C0FDB">
+<link rel="apple-touch-icon" href="images/icon-192.png">
+
 <!-- Compartir en redes y WhatsApp: sin esto el enlace del evento se pega sin título ni imagen -->
 <meta property="og:type" content="website">
 <meta property="og:title" content="ExpoJuy 2026 — Conectando países, creando oportunidades">
@@ -85,6 +90,9 @@
  .skip-link{position:absolute;left:-9999px;top:0;z-index:100;background:var(--purple);color:#fff;padding:.7rem 1.2rem;border-radius:0 0 10px 0;font-size:.85rem;font-weight:600;text-decoration:none;}
  .skip-link:focus{left:0;}  
  @media (prefers-reduced-motion: reduce){ *{animation:none!important;transition:none!important;scroll-behavior:auto!important;} }
+
+ /* ---------- native View Transitions entre pantallas ---------- */
+ ::view-transition-old(root),::view-transition-new(root){animation-duration:.22s;animation-timing-function:ease;}
 
  /* ---------- load-in / scroll-reveal animations ---------- */
  @keyframes fadeInUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
@@ -1148,6 +1156,14 @@
  var iaView=document.getElementById('view-ia');
  var current='inicio';
 
+ // Transición nativa entre pantallas (View Transitions API). Sin soporte o con
+ // prefers-reduced-motion, corre la función directo — no rompe nada.
+ function runWithTransition(fn){
+ var reduced=window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+ if(!document.startViewTransition || reduced){ fn(); return; }
+ document.startViewTransition(fn);
+ }
+
  function render(id){
  if(id!=='expositores'){ expoFiltro.rubro='Todos'; expoFiltro.q=''; }
  current=id;
@@ -1205,25 +1221,25 @@
 
  document.addEventListener('click',function(e){
  var iaBack=e.target.closest('#ia-back');
- if(iaBack){hideArquitectura();return;}
+ if(iaBack){runWithTransition(hideArquitectura);return;}
  var navBtn=e.target.closest('[data-nav]');
  if(navBtn){
  e.preventDefault();
  var id=navBtn.getAttribute('data-nav');
- if(id==='arquitectura'){showArquitectura();return;}
- render(id);
+ if(id==='arquitectura'){runWithTransition(showArquitectura);return;}
+ runWithTransition(function(){render(id);});
  return;
  }
  var entrarBtn=e.target.closest('#btn-entrar-panel');
  if(entrarBtn){
  session.rol='admin';
- render('panel');
+ runWithTransition(function(){render('panel');});
  return;
  }
  var salirBtn=e.target.closest('#btn-salir');
  if(salirBtn){
  session.rol=null;
- render('inicio');
+ runWithTransition(function(){render('inicio');});
  return;
  }
  var publicarBtn=e.target.closest('#btn-publicar');
@@ -1285,7 +1301,7 @@
  }
  var expoBtn=e.target.closest('[data-expo]');
  if(expoBtn){
- renderFichaExpositor(expoBtn.getAttribute('data-expo'));
+ runWithTransition(function(){renderFichaExpositor(expoBtn.getAttribute('data-expo'));});
  return;
  }
  });
@@ -1320,7 +1336,14 @@
  container.appendChild(b);
  }
  })();
+
+ // PWA: cachea la app para consultar agenda/mapa/expositores sin señal.
+ if('serviceWorker' in navigator){
+ window.addEventListener('load', function(){
+ navigator.serviceWorker.register('sw.js').catch(function(){});
+ });
+ }
 })();
-</script>  
-</body>  
+</script>
+</body>
 </html>  
