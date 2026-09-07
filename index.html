@@ -49,9 +49,13 @@
   }
 }
 </script>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap">  
-<style>  
- :root{  
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap">
+<style>
+ /* Tipografía oficial del kit de diseño (Fuentes_Oficiales/), no un placeholder */
+ @font-face{font-family:'Ambit';src:url('fonts/Ambit-Regular.otf') format('opentype');font-weight:400;font-style:normal;font-display:swap;}
+ @font-face{font-family:'Ambit';src:url('fonts/Ambit-SemiBold.otf') format('opentype');font-weight:600;font-style:normal;font-display:swap;}
+ @font-face{font-family:'Ambit';src:url('fonts/Ambit-Bold.otf') format('opentype');font-weight:700;font-style:normal;font-display:swap;}
+ :root{
  --teal:#1FC2D6;  
  --purple:#7C0FDB;  
  --indigo:#744CEF;  
@@ -81,7 +85,7 @@
  html{scroll-behavior:smooth;}
  *{box-sizing:border-box;}
  body{margin:0;background:var(--paper);color:var(--ink);font-family:'Manrope',system-ui,sans-serif;line-height:1.5;}
- h1,h2,h3,h4{font-family:'Unbounded',system-ui,sans-serif;font-weight:700;margin:0;text-wrap:balance;letter-spacing:-.01em;}  
+ h1,h2,h3,h4{font-family:'Ambit','Unbounded',system-ui,sans-serif;font-weight:700;margin:0;text-wrap:balance;letter-spacing:-.01em;}  
  p{margin:0;}  
  img{max-width:100%;display:block;}  
  button{font-family:inherit;cursor:pointer;}  
@@ -160,7 +164,7 @@
  .ia-panel{display:grid;gap:2.2rem;}  
  .ia-rationale{display:grid;gap:.85rem;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));}  
  .ia-rationale li{list-style:none;background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:1rem 1.1rem;font-size:.87rem;color:var(--muted);}  
- .ia-rationale li b{color:var(--ink);display:block;font-family:'Unbounded',sans-serif;font-size:.82rem;margin-bottom:.35rem;font-weight:600;}  
+ .ia-rationale li b{color:var(--ink);display:block;font-family:'Ambit','Unbounded',sans-serif;font-size:.82rem;margin-bottom:.35rem;font-weight:600;}  
  .diagram-wrap{background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:1.2rem clamp(.6rem,3vw,2rem) 1.6rem;overflow-x:auto;}  
  .diagram-wrap svg{display:block;min-width:760px;width:100%;height:auto;}  
  .node rect{fill:var(--surface-2);stroke:var(--border);}  
@@ -184,7 +188,7 @@
   
  /* ---------- acceso y panel de administración ---------- */
  .acceso-grid{grid-template-columns:repeat(auto-fit,minmax(290px,1fr));align-items:start;}
- .acceso-card h3{font-family:'Unbounded',sans-serif;font-size:1rem;margin-bottom:.5rem;}
+ .acceso-card h3{font-family:'Ambit','Unbounded',sans-serif;font-size:1rem;margin-bottom:.5rem;}
  .acceso-card p{font-size:.86rem;}
  .admin-bar{display:flex;flex-wrap:wrap;align-items:center;gap:.8rem;justify-content:space-between;background:#221F33;color:#fff;padding:.65rem clamp(1.1rem,4vw,3rem);font-size:.82rem;}
  .admin-bar .who{display:flex;align-items:center;gap:.55rem;font-weight:600;}
@@ -193,7 +197,7 @@
  .admin-bar button{border:1px solid rgba(255,255,255,.5);color:#fff;background:transparent;border-radius:999px;padding:.4em 1em;font-size:.76rem;font-weight:600;}
  .admin-bar button:hover{background:rgba(255,255,255,.15);}
  .panel-stats{grid-template-columns:repeat(auto-fit,minmax(140px,1fr));}
- .panel-stat b{font-family:'Unbounded',sans-serif;font-size:1.5rem;display:block;color:var(--accent);line-height:1.1;}
+ .panel-stat b{font-family:'Ambit','Unbounded',sans-serif;font-size:1.5rem;display:block;color:var(--accent);line-height:1.1;}
  .panel-stat span{font-size:.76rem;color:var(--muted);}
  .estado{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:.64rem;text-transform:uppercase;letter-spacing:.05em;padding:.3em .7em;border-radius:999px;border:1px solid var(--border);color:var(--ink);}
  .estado.publicada{background:rgba(31,194,214,.18);border-color:var(--teal);}
@@ -206,13 +210,13 @@
  .admin-row .r-actions{display:flex;gap:.4rem;align-items:center;flex-wrap:wrap;}
  .btn-mini{border:1px solid var(--border);background:var(--surface);color:var(--ink);border-radius:999px;padding:.45em 1em;font-size:.75rem;font-weight:600;}
  .btn-mini:hover{border-color:var(--accent);}
- .mod-card h4{font-family:'Unbounded',sans-serif;font-size:.85rem;margin-bottom:.35rem;}
+ .mod-card h4{font-family:'Ambit','Unbounded',sans-serif;font-size:.85rem;margin-bottom:.35rem;}
  .aviso-demo{border:1px dashed var(--indigo);background:var(--surface-2);border-radius:14px;padding:.9rem 1.1rem;font-size:.82rem;color:var(--muted);}
  .aviso-demo b{color:var(--ink);}
 
  /* ---------- site (inside mockup) ---------- */
  .site-header{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.9rem 1.4rem;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:40;background:var(--paper);box-shadow:0 1px 0 var(--border);}  
- .brand{display:flex;align-items:center;gap:.6rem;font-family:'Unbounded',sans-serif;font-weight:700;font-size:1rem;}  
+ .brand{display:flex;align-items:center;gap:.6rem;font-family:'Ambit','Unbounded',sans-serif;font-weight:700;font-size:1rem;}  
  .brand-logo{height:60px;width:auto;flex:none;display:block;}
  .brand-logo-dark{display:none;}
  :root[data-theme="dark"] .brand-logo-light{display:none;}
@@ -271,7 +275,7 @@
  .sector-card .sector-img{width:100%;aspect-ratio:4/3;background-size:cover;background-position:center;}
  .sector-card .sector-body{padding:1rem 1.2rem 1.3rem;display:grid;gap:.5rem;}
  .sector-card .dot{width:10px;height:10px;border-radius:50%;}
- .value-card h4, .sector-card h4, .org-card h4{font-size:.95rem;font-family:'Unbounded',sans-serif;}  
+ .value-card h4, .sector-card h4, .org-card h4{font-size:.95rem;font-family:'Ambit','Unbounded',sans-serif;}  
   
  .news-card{display:grid;gap:.6rem;}  
  .news-card img,.news-thumb{width:100%;aspect-ratio:16/9;border-radius:10px;background:var(--surface-2);}  
@@ -503,7 +507,7 @@
  </div>
 </section>
 
-<footer class="credit">Tipografías Ambit (oficiales) para referencia; en este prototipo se usan Unbounded, Manrope y JetBrains Mono por disponibilidad vía Google Fonts. Colores tomados del isologotipo oficial de ExpoJuy 2026. · <a href="#" data-nav="arquitectura">Ver arquitectura de información (documentación para el jurado)</a></footer>  
+<footer class="credit">Tipografía Ambit (oficial) en títulos y hitos; Manrope y JetBrains Mono (Google Fonts) en cuerpo y elementos utilitarios. Colores tomados del isologotipo oficial de ExpoJuy 2026. · <a href="#" data-nav="arquitectura">Ver arquitectura de información (documentación para el jurado)</a></footer>  
   
 <script>  
 (function(){  
@@ -664,7 +668,7 @@
  return list.map(function(e){
  return '<div class="card expo-card">'+
  '<div class="expo-thumb" style="background-image:url(\'images/expositor-'+e.n+'.jpg\');"></div>'+
- '<h4 style="font-family:\'Unbounded\',sans-serif;font-size:.92rem;">'+e.nombre+'</h4>'+
+ '<h4 style="font-family:\'Ambit\',\'Unbounded\',sans-serif;font-size:.92rem;">'+e.nombre+'</h4>'+
  tag(e.rubro)+
  '<p class="muted" style="font-size:.8rem;">Stand '+e.stand+'</p>'+
  '<button type="button" class="btn btn-ghost" style="font-size:.78rem;padding:.5em .9em;" data-expo="'+e.n+'">Ver ficha</button>'+
@@ -874,7 +878,7 @@
  '<button type="submit" class="btn btn-primary">Enviar mensaje</button>'+  
  '</form>'+  
  '<div class="card">'+  
- '<h4 style="font-family:\'Unbounded\',sans-serif;font-size:.95rem;margin-bottom:.9rem;">Datos de contacto</h4>'+  
+ '<h4 style="font-family:\'Ambit\',\'Unbounded\',sans-serif;font-size:.95rem;margin-bottom:.9rem;">Datos de contacto</h4>'+  
  '<ul class="info-list">'+  
  '<li>'+icon('pin')+'<div><b>Predio</b>Ciudad Cultural, San Salvador de Jujuy · 9 al 12 de octubre 2026</div></li>'+
  '<li>'+icon('phone')+'<div><b>Venta de stands</b><a href="https://wa.me/543884212955" target="_blank" rel="noopener">WhatsApp +54 388 421-2955</a></div></li>'+
@@ -978,7 +982,7 @@
  '<div class="section-head" style="margin-top:2.4rem;"><h3 style="font-size:1.05rem;">Noticias</h3><span class="muted mono" style="font-size:.72rem;">Panel de novedades</span></div>'+
  '<div class="grid contact-grid" style="margin-top:1rem;">'+
  '<div class="card">'+
- '<h4 style="font-family:\'Unbounded\',sans-serif;font-size:.9rem;margin-bottom:1rem;">Cargar una noticia</h4>'+
+ '<h4 style="font-family:\'Ambit\',\'Unbounded\',sans-serif;font-size:.9rem;margin-bottom:1rem;">Cargar una noticia</h4>'+
  '<form id="form-noticia" onsubmit="return false;">'+
  '<div class="field"><label for="f-n-titulo">Título</label><input id="f-n-titulo" name="f-n-titulo" type="text" placeholder="Título de la noticia"></div>'+
  '<div class="field"><label for="f-n-cat">Categoría</label><select id="f-n-cat" name="f-n-cat"><option>Institucional</option><option>Inscripción</option><option>Agenda</option><option>Expositores</option><option>Prensa</option></select></div>'+
@@ -989,7 +993,7 @@
  '</form>'+
  '</div>'+
  '<div class="card">'+
- '<h4 style="font-family:\'Unbounded\',sans-serif;font-size:.9rem;margin-bottom:.4rem;">Noticias cargadas</h4>'+
+ '<h4 style="font-family:\'Ambit\',\'Unbounded\',sans-serif;font-size:.9rem;margin-bottom:.4rem;">Noticias cargadas</h4>'+
  '<p class="muted" style="font-size:.78rem;margin-bottom:.6rem;">Los borradores no se muestran en el sitio público hasta que se publican.</p>'+
  '<div id="panel-noticias">'+panelNoticiasRows()+'</div>'+
  '</div>'+
@@ -1018,7 +1022,7 @@
  '</table>'+
  '</div>'+
  '<div class="card">'+
- '<h4 style="font-family:\'Unbounded\',sans-serif;font-size:.9rem;margin-bottom:.7rem;">Cómo se sostiene en el tiempo</h4>'+
+ '<h4 style="font-family:\'Ambit\',\'Unbounded\',sans-serif;font-size:.9rem;margin-bottom:.7rem;">Cómo se sostiene en el tiempo</h4>'+
  '<ul class="info-list" style="margin-top:0;">'+
  '<li>'+icon('newspaper')+'<div><b>Contenido separado del código</b>La Cámara actualiza el sitio sin intervención técnica ni un nuevo despliegue.</div></li>'+
  '<li>'+icon('search')+'<div><b>Vista previa antes de publicar</b>Todo cambio se revisa como borrador antes de quedar visible.</div></li>'+
@@ -1044,10 +1048,10 @@
  return '<div class="card org-card"><h4>'+name+'</h4><p class="muted" style="font-size:.83rem;">'+desc+'</p></div>';  
  }  
  function newsCard(cat,title,date){
- return '<div class="card news-card"><div class="news-thumb"></div>'+tag(escapeHtml(cat))+'<h4 style="font-family:\'Unbounded\',sans-serif;font-size:.9rem;">'+escapeHtml(title)+'</h4><p class="muted mono" style="font-size:.72rem;">'+escapeHtml(date||'[—/—/2026]')+'</p></div>';
+ return '<div class="card news-card"><div class="news-thumb"></div>'+tag(escapeHtml(cat))+'<h4 style="font-family:\'Ambit\',\'Unbounded\',sans-serif;font-size:.9rem;">'+escapeHtml(title)+'</h4><p class="muted mono" style="font-size:.72rem;">'+escapeHtml(date||'[—/—/2026]')+'</p></div>';
  }
  function tlItem(time,title,place,typeTag){  
- return '<div class="tl-item"><time>'+time+'</time><div>'+typeTag+'<h4 style="margin-top:.4rem;font-family:\'Unbounded\',sans-serif;font-size:.92rem;">'+title+'</h4><p class="muted" style="font-size:.8rem;margin-top:.2rem;">'+icon('pin')+' '+place+'</p></div></div>';  
+ return '<div class="tl-item"><time>'+time+'</time><div>'+typeTag+'<h4 style="margin-top:.4rem;font-family:\'Ambit\',\'Unbounded\',sans-serif;font-size:.92rem;">'+title+'</h4><p class="muted" style="font-size:.8rem;margin-top:.2rem;">'+icon('pin')+' '+place+'</p></div></div>';  
  }  
  function field(label,tagName,type,placeholder){
  var id='f-'+label.toLowerCase().replace(/[^a-z0-9]+/g,'-');
