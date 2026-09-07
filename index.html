@@ -476,7 +476,7 @@
  <tbody>
  <tr><td>Buscador de expositores</td><td>Implementado y funcional — busca por nombre, rubro y número de stand</td></tr>
  <tr><td>Agenda interactiva</td><td>Implementada — cuatro jornadas con cambio de día sin recargar</td></tr>
- <tr><td>Mapa del predio</td><td>Implementado — plano de referencia, ubicación real y líneas de colectivo</td></tr>
+ <tr><td>Mapa del predio</td><td>Implementado — plano oficial del predio, ubicación real y líneas de colectivo</td></tr>
  <tr><td>Filtro por rubros</td><td>Implementado — seis rubros, combinable con el buscador</td></tr>
  <tr><td>Formulario de contacto</td><td>Implementado — con motivo de consulta para derivar internamente</td></tr>
  <tr><td>Compra o gestión de entradas</td><td>Previsto — botón en el hero y lugar reservado en la navegación; se integra cuando la organización defina la plataforma de venta</td></tr>
@@ -877,19 +877,12 @@
  return ''+  
  pageHead('Mapa del predio','Cómo llegar')+  
  '<div class="section-pad">'+  
- '<div class="grid contact-grid">'+  
- '<div class="card">'+ mapaSvg() +'</div>'+  
- '<div>'+  
- '<p class="muted" style="margin-bottom:1rem;">Plano ilustrativo — se reemplazará por el plano real del predio ferial una vez confirmada la sede.</p>'+  
- '<ul class="map-legend">'+  
- '<li><span class="sw" style="background:var(--purple);"></span>Pabellón A — Economía del Conocimiento</li>'+  
- '<li><span class="sw" style="background:var(--indigo);"></span>Pabellón B — Producción e Industria</li>'+  
- '<li><span class="sw" style="background:var(--teal);"></span>Pabellón C — Comercio Exterior y Turismo</li>'+  
- '<li><span class="sw" style="background:var(--lavender);"></span>Patio gastronómico</li>'+  
- '<li><span class="sw" style="background:var(--muted);"></span>Ingreso / acreditación</li>'+  
- '</ul>'+
+ '<div class="card" style="padding:0;overflow:hidden;">'+
+ '<a href="images/mapa-predio.jpg" target="_blank" rel="noopener" aria-label="Ver el plano del predio en tamaño completo">'+
+ '<img src="images/mapa-predio.jpg" alt="Plano oficial del predio de ExpoJuy 2026: distribución de stands, pabellones, patio gastronómico, escenario y accesos" style="width:100%;height:auto;display:block;">'+
+ '</a>'+
  '</div>'+
- '</div>'+
+ '<p class="muted" style="margin-top:.8rem;font-size:.9rem;">Plano oficial del predio, provisto por la organización — superficie total 3.135 m². <a href="images/mapa-predio.jpg" target="_blank" rel="noopener">'+icon('pin')+' Ver en tamaño completo</a></p>'+
  '<div class="section-head" style="margin-top:2.4rem;"><h2>Cómo llegar</h2></div>'+
  '<p class="muted" style="margin-bottom:1rem;">ExpoJuy se realiza tradicionalmente en la Ciudad Cultural de San Salvador de Jujuy.</p>'+
  '<div class="card" style="padding:0;overflow:hidden;">'+
@@ -1098,16 +1091,6 @@
  '</span>'+
  '</div>';
  }
- function mapaSvg(){
- return '<svg viewBox="0 0 400 300" role="img" aria-label="Plano ilustrativo del predio" style="width:100%;height:auto;">'+  
- '<rect x="20" y="20" width="160" height="110" rx="10" fill="var(--purple)" opacity=".85"/><text x="100" y="80" text-anchor="middle" fill="#fff" font-size="13" font-family="Unbounded, sans-serif">A</text>'+  
- '<rect x="200" y="20" width="160" height="110" rx="10" fill="var(--indigo)" opacity=".85"/><text x="280" y="80" text-anchor="middle" fill="#fff" font-size="13" font-family="Unbounded, sans-serif">B</text>'+  
- '<rect x="20" y="150" width="160" height="80" rx="10" fill="var(--teal)" opacity=".85"/><text x="100" y="195" text-anchor="middle" fill="#fff" font-size="13" font-family="Unbounded, sans-serif">C</text>'+  
- '<rect x="200" y="150" width="160" height="80" rx="10" fill="var(--lavender)" opacity=".9"/><text x="280" y="195" text-anchor="middle" fill="#2b2140" font-size="12" font-family="Unbounded, sans-serif">Patio</text>'+  
- '<rect x="20" y="250" width="340" height="30" rx="8" fill="var(--surface-2)" stroke="var(--border)"/><text x="190" y="270" text-anchor="middle" fill="var(--muted)" font-size="11" font-family="JetBrains Mono, monospace">INGRESO / ACREDITACIÓN</text>'+  
- '</svg>';  
- }  
-  
  // ---- theme (light/dark switch) ----
  function systemPrefersDark(){ return !!(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches); }
  function applyTheme(t){
